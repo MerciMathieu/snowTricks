@@ -1,0 +1,44 @@
+/* VARIABLES */
+:root {
+    --grey: #8d8d8d;
+}
+/* / */
+
+html, body {
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.7rem;
+}
+
+a {
+    outline: none;
+    text-decoration: none;
+    color: var(--grey);
+}
+
+a:hover {
+    text-decoration: none;
+    color: #1f1f1f;
+    transition: all 0.2s;
+}
+
+.navbar-brand img{
+    width: 50%;
+}
+
+.icon {
+    font-size: 3.5rem;
+}
+
+.icon#backTop {
+    position: fixed;
+    bottom: 7rem;
+    right: 3rem;
+}

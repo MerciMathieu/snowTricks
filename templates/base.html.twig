@@ -1,12 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}Snowtricks{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+            <link rel="shortcut icon" type="image/png" href="/img/logo.png"/>
+            <link rel="stylesheet" href="/css/main.css">
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <header class="d-none d-lg-block">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#"><img src="/img/logo.png"></a>
+                <div class="navbar-nav ml-auto mr-5">
+                    <a class="nav-item nav-link active" href="/">Accueil <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#">Figures</a>
+                    <a class="nav-item nav-link" href="#">Se connecter</a>
+                    <a class="nav-item nav-link" href="#">S'inscrire</a>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container-fluid">
+            <div id="backTop" class="icon text-right">
+                <a href="#"><i class="fas fa-angle-up"></i></a>
+            </div>
+            {% block body %}{% endblock %}
+        </div>
+
+        <footer class="text-center navbar navbar-expand-lg fixed-bottom navbar-light bg-light text-center">
+            <div class="navbar navbar-expand-lg navbar-light bg-light d-none d-lg-block">
+                <p>Snowtricks - Copyright © 2020</p>
+            </div>
+            <div id="phoneIcons" class="text-center d-lg-none w-100 d-flex justify-content-around">
+                <a class="icon" href="/"><i class="fas fa-home"></i></a>
+{#                <a class="icon" href="#"><i class="fas fa-user-circle"></i></a>#}
+{#                <a class="icon" href="#"><i class="fas fa-sign-out-alt"></i></a>#}
+                <a class="icon" href="#"><i class="fas fa-sign-in-alt"></i></a>
+            </div>
+        </footer>
+
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        {% endblock %}
     </body>
 </html>
