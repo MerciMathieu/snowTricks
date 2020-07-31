@@ -39,9 +39,8 @@ a:hover {
 }
 
 .icon#backTop {
-    position: absolute;
-    bottom: 7rem;
-    right: 7rem;
+    position: relative;
+    right: 5rem;
 }
 
 .icon#backTop i {
