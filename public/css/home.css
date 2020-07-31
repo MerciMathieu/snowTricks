@@ -1,0 +1,26 @@
+section#home {
+    background-image: url("/img/heroblock.jpg");
+    background-position: center right;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: calc(100vh - 116.25px);
+}
+
+section#home .icon i {
+    color: var(--black);
+}
+
+section#tricks {
+    margin-bottom: 100px;
+}
+
+@media screen and (max-width: 992px) {
+    section#home {
+        background-image: url("/img/heroblock_mobile.jpg");
+        background-position: right;
+        background-attachment: initial;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}

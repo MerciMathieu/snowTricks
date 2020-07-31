@@ -1,11 +1,12 @@
 /* VARIABLES */
 :root {
     --grey: #8d8d8d;
+    --black: #000000bd;
 }
 /* / */
 
 html, body {
-    overflow: hidden;
+    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
@@ -34,11 +35,26 @@ a:hover {
 }
 
 .icon {
-    font-size: 3.5rem;
+    font-size: 5rem;
 }
 
 .icon#backTop {
-    position: fixed;
+    position: absolute;
     bottom: 7rem;
-    right: 3rem;
+    right: 7rem;
 }
+
+section#home .icon#goToTricks {
+    position: absolute;
+    bottom: 1rem;
+    right: 7rem;
+}
+
+.icon#backTop i {
+    color: var(--black);
+}
+
+#phoneIcons {
+    background-color: white;
+}
+

@@ -1,12 +1,100 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Accueil - {{ parent() }}{% endblock %}
-{% block stylesheets %}{{ parent() }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/css/home.css">
+{% endblock %}
 
 {% block body %}
     <section id="home">
-        <div class="icon">
-            <a href="#"><i class="fas fa-angle-down"></i></a>
+        <div id="goToTricks" class="icon">
+            <a href="#"><i class="fas fa-angle-down d-none d-lg-block"></i></a>
+        </div>
+    </section>
+
+    <section id="tricks">
+        <h2 class="m-5 text-center">Tricks</h2>
+        <hr />
+        <div class="row justify-content-lg-center mt-5">
+            <div class="card col-12 col-lg-2" style="width: 18rem;">
+                <img src="https://picsum.photos/400/300" class="card-img-top" alt="https://picsum.photos/400/300">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card col-12 col-lg-2" style="width: 18rem;">
+                <img src="https://picsum.photos/400/300" class="card-img-top" alt="https://picsum.photos/400/300">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card col-12 col-lg-2" style="width: 18rem;">
+                <img src="https://picsum.photos/400/300" class="card-img-top" alt="https://picsum.photos/400/300">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-lg-center mt-5">
+            <div class="card col-12 col-lg-2" style="width: 18rem;">
+                <img src="https://picsum.photos/400/300" class="card-img-top" alt="https://picsum.photos/400/300">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card col-12 col-lg-2" style="width: 18rem;">
+                <img src="https://picsum.photos/400/300" class="card-img-top" alt="https://picsum.photos/400/300">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card col-12 col-lg-2" style="width: 18rem;">
+                <img src="https://picsum.photos/400/300" class="card-img-top" alt="https://picsum.photos/400/300">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-lg-center mt-5">
+            <div class="card col-12 col-lg-2" style="width: 18rem;">
+                <img src="https://picsum.photos/400/300" class="card-img-top" alt="https://picsum.photos/400/300">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card col-12 col-lg-2" style="width: 18rem;">
+                <img src="https://picsum.photos/400/300" class="card-img-top" alt="https://picsum.photos/400/300">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card col-12 col-lg-2" style="width: 18rem;">
+                <img src="https://picsum.photos/400/300" class="card-img-top" alt="https://picsum.photos/400/300">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-lg-center mt-5">
+            <div class="card col-12 col-lg-2" style="width: 18rem;">
+                <img src="https://picsum.photos/400/300" class="card-img-top" alt="https://picsum.photos/400/300">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card col-12 col-lg-2" style="width: 18rem;">
+                <img src="https://picsum.photos/400/300" class="card-img-top" alt="https://picsum.photos/400/300">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+            <div class="card col-12 col-lg-2" style="width: 18rem;">
+                <img src="https://picsum.photos/400/300" class="card-img-top" alt="https://picsum.photos/400/300">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
         </div>
     </section>
 {% endblock %}
