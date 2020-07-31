@@ -7,12 +7,18 @@ section#home {
     height: calc(100vh - 116.25px);
 }
 
+section#tricks {
+    margin-bottom: 100px;
+}
+
 section#home .icon i {
     color: var(--black);
 }
 
-section#tricks {
-    margin-bottom: 100px;
+section#home .icon#goToTricks {
+    position: absolute;
+    bottom: 1rem;
+    right: 7rem;
 }
 
 @media screen and (max-width: 992px) {
@@ -22,5 +28,10 @@ section#tricks {
         background-attachment: initial;
         background-repeat: no-repeat;
         background-size: cover;
+    }
+
+    section#home .icon#goToTricks {
+        bottom: 11rem;
+        right: 3rem;
     }
 }
