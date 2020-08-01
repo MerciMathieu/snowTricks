@@ -15,6 +15,7 @@ class TrickFixtures extends Fixture
              $trick = new Trick();
              $trick->setName("trick $i");
              $trick->setDescription("description trick $i");
+             $trick->setImageUrl("https://picsum.photos/400/300");
              $trick->setSlug("trick-$i");
 
              $manager->persist($trick);

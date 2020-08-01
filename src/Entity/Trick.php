@@ -25,6 +25,11 @@ class Trick
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable = true)
+     */
+    private $imageUrl;
+
+    /**
      * @ORM\Column(type="text")
      */
     private $description;
@@ -57,6 +62,18 @@ class Trick
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getImageUrl(): ?string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl($imageUrl): self
+    {
+        $this->imageUrl = $imageUrl;
 
         return $this;
     }
