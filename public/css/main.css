@@ -1,44 +1,58 @@
 /* VARIABLES */
 :root {
-    --grey: #8d8d8d;
+  --grey: #8d8d8d;
+  --black: #000000bd;
 }
+
 /* / */
 
-html, body {
-    overflow: hidden;
-    scroll-behavior: smooth;
+html,
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    font-size: 1.7rem;
+  font-size: 1.7rem;
 }
 
 a {
-    outline: none;
-    text-decoration: none;
-    color: var(--grey);
+  outline: none;
+  text-decoration: none;
+  color: var(--grey);
 }
 
 a:hover {
-    text-decoration: none;
-    color: #1f1f1f;
-    transition: all 0.2s;
+  text-decoration: none;
+  color: #1f1f1f;
+  transition: all 0.2s;
 }
 
 .navbar-brand img{
-    width: 50%;
+  width: 50%;
 }
 
 .icon {
-    font-size: 3.5rem;
+  font-size: 5rem;
+}
+
+.card-icon {
+  font-size: 4rem;
 }
 
 .icon#backTop {
-    position: fixed;
-    bottom: 7rem;
-    right: 3rem;
+  position: relative;
+  right: 5rem;
+}
+
+.icon#backTop i {
+  color: var(--black);
+}
+
+#phoneIcons {
+  background-color: white;
 }
