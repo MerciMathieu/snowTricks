@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Trick;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -12,9 +13,9 @@ class TrickFixtures extends Fixture
          for ($i = 0; $i < 15; $i++)
          {
              $trick = new Trick();
-             $trick->setName('name');
-             $trick->setDescription('description');
-             $trick->setSlug('slug');
+             $trick->setName("trick $i");
+             $trick->setDescription("description trick $i");
+             $trick->setSlug("trick-$i");
 
              $manager->persist($trick);
          }
