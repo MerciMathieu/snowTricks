@@ -5,10 +5,11 @@
 {% block body %}
     <section id="trick">
         <div class="container">
-            <h1 class="text-center m-5">Trick</h1>
+            <h1 class="text-center m-5">{{ trick.name }}</h1>
             <div class="text-center">
-                <img src="https://picsum.photos/800/600" class="img img-fluid" alt="https://picsum.photos/800/600">
+                <img src="{{ trick.imageUrl }}" class="img img-fluid" alt="image d'un {{ trick.name }}">
             </div>
+            <p>{{ trick.description }}</p>
         </div>
     </section>
 {% endblock %}
