@@ -93,8 +93,7 @@ class TrickFixtures extends Fixture
             )
         );
 
-        foreach ($tricksArray as $trickFromArray)
-        {
+        foreach ($tricksArray as $trickFromArray) {
             $trick = new Trick();
             $trick->setName($trickFromArray['name']);
             $trick->setShortDescription($trickFromArray['shortDescription']);
