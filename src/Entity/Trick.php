@@ -30,6 +30,11 @@ class Trick
     private $imageUrl;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $shortDescription;
+
+    /**
      * @ORM\Column(type="text")
      */
     private $description;
@@ -48,6 +53,11 @@ class Trick
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -71,9 +81,21 @@ class Trick
         return $this->imageUrl;
     }
 
-    public function setImageUrl($imageUrl): self
+    public function setImageUrl(string $imageUrl): self
     {
         $this->imageUrl = $imageUrl;
+
+        return $this;
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->shortDescription;
+    }
+
+    public function setShortDescription(string $shortDescription): self
+    {
+        $this->shortDescription = $shortDescription;
 
         return $this;
     }
@@ -126,22 +148,30 @@ class Trick
         return $this;
     }
 
-    /**
-     * Gets triggered only on insert
+    public function getCategory(): string
+    {
+        return $this->category;
+    }
 
+    public function setCategory(string $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
      * @ORM\PrePersist
      */
-    public function onPrePersist()
+    public function onPrePersist(): void
     {
         $this->createdAt = new \DateTime("now");
     }
 
     /**
-     * Gets triggered every time on update
-
      * @ORM\PreUpdate
      */
-    public function onPreUpdate()
+    public function onPreUpdate(): void
     {
         $this->updatedAt = new \DateTime("now");
     }
