@@ -1,9 +1,9 @@
-section#trick img {
+section#trick img, p.description {
   width: 50% ;
 }
 
 @media screen and (max-width: 992px){
-  section#trick img {
+  section#trick img, p.description {
     width: 100% ;
   }
 }

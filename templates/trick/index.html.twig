@@ -13,11 +13,11 @@
                 <img src="{{ trick.imageUrl }}" class="img img-fluid text-left" alt="image d'un {{ trick.name }}">
                 <div class="content mb-5 p-3">
                     <small class="mr-auto">Ajouté le {{ trick.createdAt|date('m/d/Y à h:i') }} par Admin | Catégorie: Grab | <a href="#"> 0 commentaires</a></small>
-                    <hr class="w-50">
+                    <hr>
                     <p class="mb-3 font-weight-bold">{{ trick.shortDescription }}</p>
-                    <hr class="w-50">
+                    <hr>
                     <h2 class="my-5 font-weight-bold">Description</h2>
-                    <p class="w-50 m-auto">{{ trick.description }}</p>
+                    <p class="m-auto description">{{ trick.description }}</p>
                 </div>
             </div>
         </div>

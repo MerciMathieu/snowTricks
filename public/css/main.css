@@ -56,3 +56,13 @@ a:hover {
 #phoneIcons {
   background-color: white;
 }
+
+hr {
+  width: 50%;
+}
+
+@media screen and (max-width: 992px) {
+  hr {
+    width: 100%;
+  }
+}
