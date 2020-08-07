@@ -12,7 +12,6 @@
             <a href="#tricks"><i class="fas fa-angle-down"></i></a>
         </div>
     </section>
-
     <section id="tricks">
         <h1 class="m-5 pt-5 text-center">Tricks</h1>
         <hr />
@@ -22,7 +21,7 @@
                     <div class="text-center">
                         <p>{{ trick.name }}</p>
                     </div>
-                    <a href="{{ path('trick', {slug: trick.slug, id: trick.id }) }}">
+                    <a href="{{ path('trick', {slug: trick.slug}) }}">
                         <img src="{{ trick.imageUrl }}" class="card-img-top img-fluid" alt="Image de la figure {{ trick.name }}">
                         <div class="card-body">
                             <p class="card-text">{{ trick.description }}</p>

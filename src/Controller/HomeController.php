@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Repository\TrickRepository;
-use Doctrine\ORM\EntityManager as EntityManagerAlias;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
