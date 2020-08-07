@@ -2,16 +2,20 @@
 
 namespace App\Controller;
 
+use App\Repository\TrickRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TrickController extends AbstractController
 {
     /**
-     * @Route("/trick/{slug}", name="trick")
+     * @Route("/trick/{id}/{slug}", name="trick")
      */
-    public function index()
+    public function index(TrickRepository $trickRepository, $id)
     {
-        return $this->render('trick/index.html.twig');
+        $trick = $trickRepository->find($id);
+        return $this->render('trick/index.html.twig', [
+            'trick' => $trick
+        ]);
     }
 }

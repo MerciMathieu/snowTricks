@@ -1,12 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Accueil - {{ parent() }}{% endblock %}
-{% block stylesheets %}{{ parent() }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/css/home.css">
+{% endblock %}
 
 {% block body %}
     <section id="home">
-        <div class="icon">
-            <a href="#"><i class="fas fa-angle-down"></i></a>
+        <div id="goToTricks" class="icon">
+            <a href="#tricks"><i class="fas fa-angle-down"></i></a>
         </div>
     </section>
+
+    <section id="tricks">
+        <h1 class="m-5 pt-5 text-center">Tricks</h1>
+        <hr />
+        <div class="row justify-content-lg-around mt-5">
+            {% for trick in tricks %}
+                <div class="card col-12 col-lg-3 img-fluid m-lg-5 mb-5">
+                    <div class="text-center">
+                        <p>{{ trick.name }}</p>
+                    </div>
+                    <a href="{{ path('trick', {slug: trick.slug, id: trick.id }) }}">
+                        <img src="{{ trick.imageUrl }}" class="card-img-top img-fluid" alt="Image de la figure {{ trick.name }}">
+                        <div class="card-body">
+                            <p class="card-text">{{ trick.description }}</p>
+                        </div>
+                    </a>
+                    <div class="controls">
+                        <div class="text-right">
+                            <a href="#" class="card-icon"><i class="fas fa-pen-square"></i></a>
+                            <a href="#" class="card-icon ml-4"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <div id="backTop" class="icon text-right d-none d-lg-block">
+        <a href="#top"><i class="fas fa-angle-up"></i></a>
+    </div>
 {% endblock %}
