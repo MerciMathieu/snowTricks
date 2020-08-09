@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TrickRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,11 +25,6 @@ class Trick
      * @ORM\Column(type="string", length=255)
      */
     private $name;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable = true)
-     */
-    private $imageUrl;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -59,12 +56,23 @@ class Trick
      */
     private $category;
 
-    public function getId(): ?int
+    /**
+     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick", orphanRemoval=true)
+     * @var Media[]
+     */
+    private $medias;
+
+    public function __construct()
+    {
+        $this->medias = new ArrayCollection();
+    }
+
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -76,16 +84,26 @@ class Trick
         return $this;
     }
 
-    public function getImageUrl(): ?string
+    public function getImageUrl(): string
     {
-        return $this->imageUrl;
+        return $this->getMedias()->first()->getUrl();
     }
 
-    public function setImageUrl(string $imageUrl): self
+    public function getImages()
     {
-        $this->imageUrl = $imageUrl;
+        $images = [];
+        if ($this->getMedias()) {
+            foreach ($this->getMedias()->getValues() as $media) {
+                $imagesUrl = $media->getUrl();
+                var_dump($imagesUrl); exit;
+            }
+        }
+        return $images;
+    }
 
-        return $this;
+    public function getVideos()
+    {
+        return $this->getMedias(Media::TYPE_VIDEO);
     }
 
     public function getShortDescription(): ?string
@@ -156,6 +174,38 @@ class Trick
     public function setCategory(string $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Media[]
+     */
+    public function getMedias(string $type = null): Collection
+    {
+        $medias = [];
+        return $this->medias;
+    }
+
+    public function addMedia(Media $media): self
+    {
+        if (!$this->medias->contains($media)) {
+            $this->medias[] = $media;
+            $media->setTrick($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedia(Media $media): self
+    {
+        if ($this->medias->contains($media)) {
+            $this->medias->removeElement($media);
+            // set the owning side to null (unless already changed)
+            if ($media->getTrick() === $this) {
+                $media->setTrick(null);
+            }
+        }
 
         return $this;
     }
