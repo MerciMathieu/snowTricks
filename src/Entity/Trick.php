@@ -181,9 +181,8 @@ class Trick
     /**
      * @return Collection|Media[]
      */
-    public function getMedias(string $type = null): Collection
+    public function getMedias(): Collection
     {
-        $medias = [];
         return $this->medias;
     }
 
