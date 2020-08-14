@@ -22,7 +22,7 @@
                         <p class="my-3">{{ trick.name }}</p>
                     </div>
                     <a href="{{ path('trick', {slug: trick.slug}) }}">
-                        <img src="{{ trick.imageUrl }}" class="card-img-top img-fluid" alt="Image de la figure {{ trick.name }}">
+                        <img src="{{ trick.firstImageUrl }}" class="card-img-top img-fluid" alt="Image de la figure {{ trick.name }}">
                         <div class="card-body">
                             <p class="card-text">{{ trick.shortDescription }}</p>
                         </div>

@@ -84,28 +84,6 @@ class Trick
         return $this;
     }
 
-    public function getImageUrl(): string
-    {
-        return $this->getMedias()->first()->getUrl();
-    }
-
-    public function getImages()
-    {
-        $images = [];
-        if ($this->getMedias()) {
-            foreach ($this->getMedias()->getValues() as $media) {
-                $imagesUrl = $media->getUrl();
-                var_dump($imagesUrl); exit;
-            }
-        }
-        return $images;
-    }
-
-    public function getVideos()
-    {
-        return $this->getMedias(Media::TYPE_VIDEO);
-    }
-
     public function getShortDescription(): ?string
     {
         return $this->shortDescription;
@@ -176,6 +154,27 @@ class Trick
         $this->category = $category;
 
         return $this;
+    }
+
+    public function getFirstImageUrl(): string
+    {
+        return $this->getMedias()->first()->getUrl();
+    }
+
+    public function getTypedMediasUrl($type): ?array
+    {
+        $mediasUrl = [];
+        if (isset($type)) {
+            $mediasArray = $this->getMedias()->toArray();
+            foreach ($mediasArray as $media) {
+                $mediaType = $media->getType();
+                if ($mediaType === $type) {
+                    $mediasUrl[] = $media->getUrl();
+                }
+            }
+        }
+
+        return $mediasUrl;
     }
 
     /**

@@ -20,12 +20,27 @@ class TrickFixtures extends Fixture
                     "1" => array(
                         "url" => "https://ultimatesnowsports.com/wp-content/uploads/2015/08/Nose-grab.jpg",
                         "type" => "image",
-                        "caption" => ""
+                        "caption" => "Nose grab"
                     ),
                     "2" => array(
                         "url" => "https://cdn.shopify.com/s/files/1/0230/2239/files/3_b5916b1c-dec5-4882-8e5d-abf311e254b3_large.jpg?v=1517870727",
                         "type" => "image",
-                        "caption" => ""
+                        "caption" => "Nose grab"
+                    ),
+                    "3" => array(
+                        "url" => "https://www.youtube.com/embed/gZFWW4Vus-Q",
+                        "type" => "video",
+                        "caption" => "Comment faire un nose grab"
+                    ),
+                    "4" => array(
+                        "url" => "https://www.youtube.com/embed/y2MHu0mbzQw",
+                        "type" => "video",
+                        "caption" => "Nose grab en vidéo"
+                    ),
+                    "5" => array(
+                        "url" => "https://coresites-cdn-adm.imgix.net/whitelines_new/wp-content/uploads/2014/01/Trick-Nose-Grab-620x440.jpg",
+                        "type" => "image",
+                        "caption" => "Nose grab"
                     )
                 ),
                 "slug" => "nose-grab",

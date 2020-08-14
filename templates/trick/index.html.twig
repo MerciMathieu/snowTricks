@@ -10,7 +10,7 @@
         <div class="container-fluid mb-5">
             <div class="text-center">
                 <h1 class="m-5">{{ trick.name }}</h1>
-                <img src="{{ trick.imageUrl }}" class="img img-fluid text-left" alt="image d'un {{ trick.name }}">
+                <img src="{{ trick.firstImageUrl }}" class="img img-fluid text-left" alt="image d'un {{ trick.name }}">
                 <div class="content mb-5 p-3">
                     <small>Ajouté le {{ trick.createdAt|date('m/d/Y à h:i') }} par Admin | Catégorie: Grab | <a href="#"> 0 commentaires</a>
                     </small>
@@ -22,16 +22,16 @@
                     <p class="mb-3 font-weight-bold">{{ trick.shortDescription }}</p>
                     <hr>
                     <div id="medias" class="d-flex justify-content-center flex-column flex-lg-row">
-                        <div id="carouselImages" class="carousel slide m-3" data-ride="carousel">
+                        <div id="carouselImages" class="carousel slide m-3" data-ride="">
                             <ol class="carousel-indicators">
-                                {% for media in trick.medias.toArray %}
+                                {% for i in trick.typedMediasUrl('image') %}
                                     <li data-target="#carouselImages" data-slide-to="{{ loop.index }}" class="{%if loop.index == 1%} active {%endif%}"></li>
                                 {% endfor %}
                             </ol>
                             <div class="carousel-inner">
-                                {% for media in trick.medias.toArray %}
-                                    <div class="carousel-item {%if loop.index == 1%} active {%endif%}">
-                                        <img class="d-block img-fluid w-100" src="{{ media.url }}" alt="Slide">
+                                {% for imageUrl in trick.typedMediasUrl('image') %}
+                                    <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+                                        <img class="d-block img-fluid w-100" src="{{ imageUrl }}" alt="Slide {{ loop.index }}">
                                     </div>
                                 {% endfor %}
                             </div>
@@ -44,16 +44,21 @@
                                 <span class="sr-only">Next</span>
                             </a>
                         </div>
-                        <div id="carouselVideos" class="carousel slide m-3" data-ride="carousel">
+
+                        <div id="carouselVideos" class="carousel slide m-3" data-ride="">
                             <ol class="carousel-indicators">
-                                <li data-target="#carouselVideos" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselVideos" data-slide-to="1"></li>
-                                <li data-target="#carouselVideos" data-slide-to="2"></li>
+                                {% for v in trick.typedMediasUrl('video') %}
+                                    <li data-target="#carouselVideos" data-slide-to="{{ loop.index }}" class="{% if loop.index == 1 %} active {%endif%}"></li>
+                                {% endfor %}
                             </ol>
                             <div class="carousel-inner">
-                                <div class="carousel-item">
-                                    <iframe width="927" height="695" src="https://www.youtube.com/embed/C0DPdy98e4c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
+                                {% for videoUrl in trick.typedMediasUrl('video') %}
+                                    <div class="carousel-item {% if loop.index == 1 %} active {%endif%}">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <iframe class="embed-responsive-item w-100" src="{{ videoUrl }}" allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                {% endfor %}
                             </div>
                             <a class="carousel-control-prev" href="#carouselVideos" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
