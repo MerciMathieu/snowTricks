@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }}{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="/css/trick.css">
 {% endblock %}
+
 {% block body %}
     <section id="trick">
         <div class="text-center mb-5">
@@ -23,35 +25,37 @@
                 <div id="medias" class="d-flex justify-content-center flex-column flex-lg-row">
                     <div id="carouselImages" class="carousel slide m-3" data-ride="">
                         <ol class="carousel-indicators">
-                            {% for i in trick.typedMediasUrl('image') %}
-                                <li data-target="#carouselImages" data-slide-to="{{ loop.index }}" class="{%if loop.index == 1%} active {%endif%}"></li>
-                            {% endfor %}
-                        </ol>
-                        <div class="carousel-inner">
-                            {% for imageUrl in trick.typedMediasUrl('image') %}
-                                <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
-                                    <img class="d-block img-fluid w-100" src="{{ imageUrl }}" alt="Slide {{ loop.index }}">
-                                </div>
-                            {% endfor %}
+                            {% if  trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
+                                {% for imageUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
+                                    <li data-target="#carouselImages" data-slide-to="{{ loop.index }}" class="{%if loop.index == 1%} active {%endif%}"></li>
+                                {% endfor %}
+                            </ol>
+                            <div class="carousel-inner">
+                                {% for imageUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
+                                    <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+                                        <img class="d-block img-fluid w-100" src="{{ imageUrl }}" alt="Slide {{ loop.index }}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselImages" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselImages" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselImages" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselImages" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                    {% if  trick.typedMediasUrl('video')%}
+                    {% endif %}
+                    {% if  trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_VIDEO'))%}
                         <div id="carouselVideos" class="carousel slide m-3" data-ride="">
                             <ol class="carousel-indicators">
-                                {% for v in trick.typedMediasUrl('video') %}
+                                {% for videoUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_VIDEO')) %}
                                     <li data-target="#carouselVideos" data-slide-to="{{ loop.index }}" class="{% if loop.index == 1 %} active {%endif%}"></li>
                                 {% endfor %}
                             </ol>
                             <div class="carousel-inner">
-                                {% for videoUrl in trick.typedMediasUrl('video') %}
+                                {% for videoUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_VIDEO')) %}
                                     <div class="carousel-item {% if loop.index == 1 %} active {%endif%}">
                                         <div class="embed-responsive embed-responsive-16by9">
                                             <iframe class="embed-responsive-item w-100" src="{{ videoUrl }}" allowfullscreen></iframe>

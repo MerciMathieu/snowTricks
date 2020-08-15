@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Media
 {
+    const TYPE_IMAGE = 'image';
+    const TYPE_VIDEO = 'video';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

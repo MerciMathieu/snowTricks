@@ -158,19 +158,19 @@ class Trick
 
     public function getFirstImageUrl(): string
     {
-        return $this->getMedias()->first()->getUrl();
+        $images = $this->getTypedMediasUrl(Media::TYPE_IMAGE);
+        return array_shift($images);
     }
 
-    public function getTypedMediasUrl($type): ?array
+    /**
+     * @return Media[]
+     */
+    public function getTypedMediasUrl(string $type): array
     {
         $mediasUrl = [];
-        if (isset($type)) {
-            $mediasArray = $this->getMedias()->toArray();
-            foreach ($mediasArray as $media) {
-                $mediaType = $media->getType();
-                if ($mediaType === $type) {
-                    $mediasUrl[] = $media->getUrl();
-                }
+        foreach ($this->getMedias() as $media) {
+            if ($media->getType() === $type) {
+                $mediasUrl[] = $media->getUrl();
             }
         }
 

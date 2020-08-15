@@ -177,7 +177,6 @@ class TrickFixtures extends Fixture
         );
 
         foreach ($tricksArray as $trickFromArray) {
-
             $trick = new Trick();
             $trick->setName($trickFromArray['name']);
             $trick->setShortDescription($trickFromArray['shortDescription']);
@@ -187,7 +186,7 @@ class TrickFixtures extends Fixture
 
             $manager->persist($trick);
 
-            foreach ($trickFromArray['medias'] as $mediaFromArray){
+            foreach ($trickFromArray['medias'] as $mediaFromArray) {
                 $media = new Media();
                 $media->setTrick($trick);
                 $media->setUrl($mediaFromArray['url']);

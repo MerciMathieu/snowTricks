@@ -21,17 +21,7 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $firstName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $userName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -53,30 +43,6 @@ class User
         return $this->id;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
     public function getUserName(): ?string
     {
         return $this->userName;
@@ -85,18 +51,6 @@ class User
     public function setUserName(string $userName): self
     {
         $this->userName = $userName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): self
-    {
-        $this->lastName = $lastName;
 
         return $this;
     }

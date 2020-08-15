@@ -61,8 +61,18 @@ hr {
   width: 50%;
 }
 
+input.form-control , textarea.form-control {
+  font-size: 2rem;
+}
+
+button.btn {
+  font-size: 1.7rem;
+}
+
 @media screen and (max-width: 992px) {
   hr {
     width: 100%;
   }
+
+  
 }
