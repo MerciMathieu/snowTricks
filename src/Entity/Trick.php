@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TrickRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,9 +27,9 @@ class Trick
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable = true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $imageUrl;
+    private $shortDescription;
 
     /**
      * @ORM\Column(type="text")
@@ -49,12 +51,28 @@ class Trick
      */
     private $slug;
 
-    public function getId(): ?int
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick", orphanRemoval=true)
+     * @var Media[]
+     */
+    private $medias;
+
+    public function __construct()
+    {
+        $this->medias = new ArrayCollection();
+    }
+
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -66,14 +84,14 @@ class Trick
         return $this;
     }
 
-    public function getImageUrl(): ?string
+    public function getShortDescription(): ?string
     {
-        return $this->imageUrl;
+        return $this->shortDescription;
     }
 
-    public function setImageUrl($imageUrl): self
+    public function setShortDescription(string $shortDescription): self
     {
-        $this->imageUrl = $imageUrl;
+        $this->shortDescription = $shortDescription;
 
         return $this;
     }
@@ -126,22 +144,82 @@ class Trick
         return $this;
     }
 
-    /**
-     * Gets triggered only on insert
+    public function getCategory(): string
+    {
+        return $this->category;
+    }
 
+    public function setCategory(string $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getFirstImageUrl(): string
+    {
+        $images = $this->getTypedMediasUrl(Media::TYPE_IMAGE);
+        return array_shift($images);
+    }
+
+    /**
+     * @return Media[]
+     */
+    public function getTypedMediasUrl(string $type): array
+    {
+        $mediasUrl = [];
+        foreach ($this->getMedias() as $media) {
+            if ($media->getType() === $type) {
+                $mediasUrl[] = $media->getUrl();
+            }
+        }
+
+        return $mediasUrl;
+    }
+
+    /**
+     * @return Collection|Media[]
+     */
+    public function getMedias(): Collection
+    {
+        return $this->medias;
+    }
+
+    public function addMedia(Media $media): self
+    {
+        if (!$this->medias->contains($media)) {
+            $this->medias[] = $media;
+            $media->setTrick($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedia(Media $media): self
+    {
+        if ($this->medias->contains($media)) {
+            $this->medias->removeElement($media);
+            // set the owning side to null (unless already changed)
+            if ($media->getTrick() === $this) {
+                $media->setTrick(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
      * @ORM\PrePersist
      */
-    public function onPrePersist()
+    public function onPrePersist(): void
     {
         $this->createdAt = new \DateTime("now");
     }
 
     /**
-     * Gets triggered every time on update
-
      * @ORM\PreUpdate
      */
-    public function onPreUpdate()
+    public function onPreUpdate(): void
     {
         $this->updatedAt = new \DateTime("now");
     }

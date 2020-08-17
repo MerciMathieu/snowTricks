@@ -1,0 +1,27 @@
+section#trick img, p.description {
+  width: 50% ;
+}
+
+#carouselImages, #carouselVideos {
+  width: 25%;
+  height: 100%;
+  height: -webkit-fill-available;
+  height: -moz-available;
+  height: fill-available;
+}
+
+div.comments {
+  border: lightgray 1px solid;
+  padding: 20px;
+}
+
+section#trick .comment img {
+  width: 90px;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 992px){
+  section#trick img, p.description, #carouselImages, #carouselVideos {
+    width: 100% ;
+  }
+}

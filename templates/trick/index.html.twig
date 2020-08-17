@@ -2,14 +2,108 @@
 
 {% block title %}{{ parent() }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/css/trick.css">
+{% endblock %}
+
 {% block body %}
     <section id="trick">
-        <div class="container">
-            <h1 class="text-center m-5">{{ trick.name }}</h1>
-            <div class="text-center">
-                <img src="{{ trick.imageUrl }}" class="img img-fluid" alt="image d'un {{ trick.name }}">
+        <div class="text-center mb-5">
+            <h1 class="m-5">{{ trick.name }}</h1>
+            <img src="{{ trick.firstImageUrl }}" class="img img-fluid text-left" alt="image d'un {{ trick.name }}">
+            <div class="content mb-5 p-3">
+                <small>Ajouté le {{ trick.createdAt|date('m/d/Y à h:i') }} par Admin | Catégorie: Grab | <a href="#"> 0 commentaires</a>
+                </small>
+                <div class="controls">
+                    <a href="#" class="card-icon"><i class="fas fa-pen-square"></i></a>
+                    <a href="#" class="card-icon ml-4"><i class="fas fa-trash"></i></a>
+                </div>
+                <hr>
+                <p class="mb-3 font-weight-bold">{{ trick.shortDescription }}</p>
+                <hr>
+                <div id="medias" class="d-flex justify-content-center flex-column flex-lg-row">
+                    <div id="carouselImages" class="carousel slide m-3" data-ride="">
+                        <ol class="carousel-indicators">
+                            {% if  trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
+                                {% for imageUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
+                                    <li data-target="#carouselImages" data-slide-to="{{ loop.index }}" class="{%if loop.index == 1%} active {%endif%}"></li>
+                                {% endfor %}
+                            </ol>
+                            <div class="carousel-inner">
+                                {% for imageUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
+                                    <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+                                        <img class="d-block img-fluid w-100" src="{{ imageUrl }}" alt="Slide {{ loop.index }}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselImages" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselImages" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% if  trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_VIDEO'))%}
+                        <div id="carouselVideos" class="carousel slide m-3" data-ride="">
+                            <ol class="carousel-indicators">
+                                {% for videoUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_VIDEO')) %}
+                                    <li data-target="#carouselVideos" data-slide-to="{{ loop.index }}" class="{% if loop.index == 1 %} active {%endif%}"></li>
+                                {% endfor %}
+                            </ol>
+                            <div class="carousel-inner">
+                                {% for videoUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_VIDEO')) %}
+                                    <div class="carousel-item {% if loop.index == 1 %} active {%endif%}">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <iframe class="embed-responsive-item w-100" src="{{ videoUrl }}" allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselVideos" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselVideos" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+                <hr>
+                <h2 class="my-5 font-weight-bold">Description</h2>
+                <p class="m-auto description">{{ trick.description }}</p>
+                <hr>
             </div>
-            <p>{{ trick.description }}</p>
+        </div>
+        <div class="container mb-5 pb-5">
+            <div class="leaveComment text-center">
+                <p class="mb-5"><a href="">Inscrivez-vous</a> ou <a href="">connectez vous</a> pour commenter cet article</p>
+                {#FORMULAIRE ICI#}
+            </div>
+            <div class="comments mb-5 pb-5">
+                <p>2 commentaires(s)</p>
+                <div class="comment mb-5 p-5">
+                    <div class="card-header mb-3">Mathieu<small class="text-muted ml-2"> le 17/09/2020 à 16h34</small></div>
+                    <img src="https://picsum.photos/id/1/100/100" alt="avatar de Mathieu" class="float-right">
+                    <p class="m-5 d-inline">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                    </p>
+                </div>
+                <hr>
+                <div class="comment mb-5 p-5">
+                    <div class="card-header mb-3">Mathieu<small class="text-muted ml-2"> le 17/09/2020 à 16h34</small></div>
+                    <img src="https://picsum.photos/id/1/100/100" alt="avatar de Mathieu" class="float-right">
+                    <p class="m-5 d-inline">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+                    </p>
+                </div>
+                <hr>
+            </div>
         </div>
     </section>
 {% endblock %}

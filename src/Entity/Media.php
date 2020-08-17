@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Media
 {
+    const TYPE_IMAGE = 'image';
+    const TYPE_VIDEO = 'video';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -18,38 +21,32 @@ class Media
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $path;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $url;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
+     */
+    private $type;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $caption;
 
-    public function getId(): ?int
+    /**
+     * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="medias")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $trick;
+
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getPath(): ?string
-    {
-        return $this->path;
-    }
-
-    public function setPath(string $path): self
-    {
-        $this->path = $path;
-
-        return $this;
-    }
-
-    public function getUrl(): ?string
+    public function getUrl(): string
     {
         return $this->url;
     }
@@ -66,9 +63,33 @@ class Media
         return $this->caption;
     }
 
-    public function setCaption(string $caption): self
+    public function setCaption(?string $caption): self
     {
         $this->caption = $caption;
+
+        return $this;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getTrick(): Trick
+    {
+        return $this->trick;
+    }
+
+    public function setTrick(Trick $trick): self
+    {
+        $this->trick = $trick;
 
         return $this;
     }

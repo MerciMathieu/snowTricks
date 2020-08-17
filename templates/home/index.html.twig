@@ -19,12 +19,12 @@
             {% for trick in tricks %}
                 <div class="card col-12 col-lg-3 img-fluid m-lg-5 mb-5">
                     <div class="text-center">
-                        <p>{{ trick.name }}</p>
+                        <p class="my-3">{{ trick.name }}</p>
                     </div>
                     <a href="{{ path('trick', {slug: trick.slug}) }}">
-                        <img src="{{ trick.imageUrl }}" class="card-img-top img-fluid" alt="Image de la figure {{ trick.name }}">
+                        <img src="{{ trick.firstImageUrl }}" class="card-img-top img-fluid" alt="Image de la figure {{ trick.name }}">
                         <div class="card-body">
-                            <p class="card-text">{{ trick.description }}</p>
+                            <p class="card-text">{{ trick.shortDescription }}</p>
                         </div>
                     </a>
                     <div class="controls">
