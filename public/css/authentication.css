@@ -1,0 +1,5 @@
+@media screen and (max-width: 992px) {
+  div.w-25 {
+    width: 100% !important;
+  }
+}

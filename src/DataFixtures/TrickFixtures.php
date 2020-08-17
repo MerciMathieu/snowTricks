@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Media;
 use App\Entity\Trick;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -175,6 +176,25 @@ class TrickFixtures extends Fixture
                 "category" => "Grab"
             )
         );
+        $usersArray = array(
+            "1" => array(
+                "userName" => "admin",
+                "email" => "admin@snowtricks.fr",
+                "password" => "admin"
+            )
+        );
+
+        foreach ($usersArray as $userFromArray)
+        {
+            $user = new User();
+            $user->setUserName($userFromArray['userName']);
+            $user->setEmail($userFromArray['email']);
+            $user->setPassword(hash('md5', $userFromArray['password']));
+
+            $manager->persist($user);
+        }
+
+
 
         foreach ($tricksArray as $trickFromArray) {
             $trick = new Trick();
@@ -183,6 +203,7 @@ class TrickFixtures extends Fixture
             $trick->setDescription($trickFromArray['description']);
             $trick->setSlug($trickFromArray['slug']);
             $trick->setCategory($trickFromArray['category']);
+            $trick->setAuthor($user);
 
             $manager->persist($trick);
 
@@ -192,6 +213,7 @@ class TrickFixtures extends Fixture
                 $media->setUrl($mediaFromArray['url']);
                 $media->setType($mediaFromArray['type']);
                 $media->setCaption($mediaFromArray['caption']);
+
                 $manager->persist($media);
             }
 
