@@ -7,9 +7,15 @@ use App\Entity\Trick;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class TrickFixtures extends Fixture
 {
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
+
     public function load(ObjectManager $manager)
     {
         $tricksArray = array(
@@ -184,17 +190,14 @@ class TrickFixtures extends Fixture
             )
         );
 
-        foreach ($usersArray as $userFromArray)
-        {
+        foreach ($usersArray as $userFromArray) {
             $user = new User();
             $user->setUserName($userFromArray['userName']);
             $user->setEmail($userFromArray['email']);
-            $user->setPassword(hash('md5', $userFromArray['password']));
+            $user->setPassword($this->encoder->encodePassword($user, $userFromArray['password']));
 
             $manager->persist($user);
         }
-
-
 
         foreach ($tricksArray as $trickFromArray) {
             $trick = new Trick();

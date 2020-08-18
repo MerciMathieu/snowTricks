@@ -11,15 +11,15 @@
     <section id="login">
         <div class="mb-5 container w-25">
             <h1 class="my-5 text-center">Se connecter</h1>
-            <form action="" method="post">
+            <form action="{{ path('login') }}" method="post">
                 <div class="form-group">
                     <div class="form-row mb-3">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" name="email" placeholder="Entrez votre email">
+                        <input id="email" type="email" class="form-control" name="_username" placeholder="Entrez votre email" required>
                     </div>
                     <div class="form-row mb-3">
                         <label for="password">Mot de passe</label>
-                        <input type="password" class="form-control" name="password" placeholder="Mot de passe...">
+                        <input id="password" type="password" class="form-control" name="_password" placeholder="Mot de passe..." required>
                     </div>
                     <div class="form-row">
                         <button type="submit" class="btn btn-dark">Se connecter</button>

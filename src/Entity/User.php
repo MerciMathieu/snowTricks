@@ -6,13 +6,14 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  * @ORM\HasLifecycleCallbacks
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -62,7 +63,7 @@ class User
         return $this->id;
     }
 
-    public function getUserName(): ?string
+    public function getUserNickName(): ?string
     {
         return $this->userName;
     }
@@ -186,5 +187,23 @@ class User
     public function onPreUpdate(): void
     {
         $this->updatedAt = new \DateTime("now");
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    public function getSalt()
+    {
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->email;
     }
 }
