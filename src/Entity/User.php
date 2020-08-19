@@ -36,7 +36,6 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Email(message="Veuillez entrer votre nom d'utilisateur")
      * @Assert\Length(
      *     min=3,
      *     minMessage="Votre nom doit contenir au moins 3 caractères"
@@ -46,6 +45,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      * @Assert\Email(message="Vous devez renseigner un email valide!")
      */
     private $email;
