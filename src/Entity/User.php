@@ -6,12 +6,23 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="Cet email existe déjà"
+ * )
+ * @UniqueEntity(
+ *     fields={"userName"},
+ *     message="Ce nom d'utilisateur existe déjà"
+ * )
+ *
  */
 class User implements UserInterface
 {
@@ -24,16 +35,27 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Email(message="Veuillez entrer votre nom d'utilisateur")
+     * @Assert\Length(
+     *     min=3,
+     *     minMessage="Votre nom doit contenir au moins 3 caractères"
+     * )
      */
     private $userName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email(message="Vous devez renseigner un email valide!")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *     min=5,
+     *     minMessage="Le mot de passe doit contenir au moins 5 caractères"
+     * )
      */
     private $password;
 
