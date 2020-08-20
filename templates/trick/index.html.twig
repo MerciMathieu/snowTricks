@@ -13,12 +13,14 @@
             <h1 class="m-5">{{ trick.name }}</h1>
             <img src="{{ trick.firstImageUrl }}" class="img img-fluid text-left" alt="image d'un {{ trick.name }}">
             <div class="content mb-5 p-3">
-                <small>Ajouté le {{ trick.createdAt|date('m/d/Y à h:i') }} par Admin | Catégorie: Grab | <a href="#"> 0 commentaires</a>
+                <small>Ajouté le {{ trick.createdAt|date('m/d/Y à h:i') }} par {{ trick.author.userNickName }} | Catégorie: {{ trick.category }} | <a href="#comments"> 0 commentaires</a>
                 </small>
-                <div class="controls">
-                    <a href="#" class="card-icon"><i class="fas fa-pen-square"></i></a>
-                    <a href="#" class="card-icon ml-4"><i class="fas fa-trash"></i></a>
-                </div>
+                {% if app.user %}
+                    <div class="controls">
+                        <a href="#" class="card-icon"><i class="fas fa-pen-square"></i></a>
+                        <a href="#" class="card-icon ml-4"><i class="fas fa-trash"></i></a>
+                    </div>
+                {% endif %}
                 <hr>
                 <p class="mb-3 font-weight-bold">{{ trick.shortDescription }}</p>
                 <hr>
@@ -82,10 +84,14 @@
         </div>
         <div class="container mb-5 pb-5">
             <div class="leaveComment text-center">
-                <p class="mb-5"><a href="">Inscrivez-vous</a> ou <a href="">connectez vous</a> pour commenter cet article</p>
-                {#FORMULAIRE ICI#}
+                {% if app.user %}
+                    {# TODO #}
+                    <h1>FORMULAIRE AJOUT COMMENTAIRES ICI</h1>
+                {% else %}
+                    <p class="mb-5"><a href="{{ path('register') }}">Inscrivez-vous</a> ou <a href="{{ path('login') }}">connectez vous</a> pour commenter cet article</p>
+                {% endif %}
             </div>
-            <div class="comments mb-5 pb-5">
+            <div id="comments" class="my-5 pb-5">
                 <p>2 commentaires(s)</p>
                 <div class="comment mb-5 p-5">
                     <div class="card-header mb-3">Mathieu<small class="text-muted ml-2"> le 17/09/2020 à 16h34</small></div>

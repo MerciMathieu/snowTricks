@@ -10,7 +10,7 @@ section#trick img, p.description {
   height: fill-available;
 }
 
-div.comments {
+div#comments {
   border: lightgray 1px solid;
   padding: 20px;
 }

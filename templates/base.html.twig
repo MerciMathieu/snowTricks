@@ -18,8 +18,13 @@
                 <div class="navbar-nav ml-auto mr-5">
                     <a class="nav-item nav-link active" href="/">Accueil <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="/#tricks">Figures</a>
-                    <a class="nav-item nav-link" href="{{ path('login') }}">Se connecter</a>
-                    <a class="nav-item nav-link" href="{{ path('register') }}">S'inscrire</a>
+                    {% if app.user %}
+                        <a class="nav-item nav-link" href="{{ path('admin') }}">Mon compte</a>
+                        <a class="nav-item nav-link" href="{{ path('logout') }}">Déconnexion</a>
+                    {% else %}
+                        <a class="nav-item nav-link" href="{{ path('login') }}">Se connecter</a>
+                        <a class="nav-item nav-link" href="{{ path('register') }}">S'inscrire</a>
+                    {% endif %}
                 </div>
             </nav>
         </header>
@@ -34,9 +39,12 @@
             </div>
             <div id="phoneIcons" class="text-center d-lg-none w-100 d-flex justify-content-around fixed-bottom">
                 <a class="icon" href="/"><i class="fas fa-home"></i></a>
-                <a class="icon" href="#"><i class="fas fa-user-circle"></i></a>
-                <a class="icon" href="#"><i class="fas fa-sign-out-alt"></i></a>
-                <a class="icon" href="#"><i class="fas fa-sign-in-alt"></i></a>
+                {% if app.user %}
+                    <a class="icon" href="#"><i class="fas fa-user-circle"></i></a>
+                    <a class="icon" href="{{ path('logout') }}"><i class="fas fa-sign-out-alt"></i></a>
+                {% else %}
+                    <a class="icon" href="#"><i class="fas fa-sign-in-alt"></i></a>
+                {% endif %}
             </div>
         </footer>
 
