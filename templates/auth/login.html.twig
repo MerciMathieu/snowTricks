@@ -10,7 +10,7 @@
 {% block body %}
     <section id="login">
         <div class="mb-5 container w-25">
-            <h1 class="my-5 text-center">Se connecter</h1>
+
 
             {% if hasError %}
                 <div class="alert alert-danger">Le nom d'utilisateur/mot de passe est invalide</div>
@@ -23,6 +23,7 @@
             {% endfor %}
 
             <form action="{{ path('login') }}" method="post">
+                <h1 class="my-5 text-center">Se connecter</h1>
                 <div class="form-group">
                     <div class="form-row mb-3">
                         <label for="email">Email</label>
@@ -37,7 +38,9 @@
                     </div>
                 </div>
             </form>
+            <div class="text-center my-5">
+                <a href="{{ path('forgot_password') }}">Mot de passe oublié ?</a>
+            </div>
         </div>
     </section>
-
 {% endblock %}

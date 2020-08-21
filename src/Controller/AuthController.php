@@ -60,4 +60,20 @@ class AuthController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/forgot-password", name="forgot_password")
+     */
+    public function forgotPassword()
+    {
+        return $this->render('auth/forgot-password.html.twig');
+    }
+
+    /**
+     * @Route("/reset-password", name="reset_password")
+     */
+    public function resetPassword()
+    {
+        return $this->render('auth/reset-password.html.twig');
+    }
 }
