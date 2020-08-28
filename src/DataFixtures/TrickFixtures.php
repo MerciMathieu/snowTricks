@@ -4,11 +4,18 @@ namespace App\DataFixtures;
 
 use App\Entity\Media;
 use App\Entity\Trick;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class TrickFixtures extends Fixture
 {
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
+
     public function load(ObjectManager $manager)
     {
         $tricksArray = array(
@@ -138,7 +145,7 @@ class TrickFixtures extends Fixture
                 "description" => "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.",
                 "medias" => array(
                     "1" => array(
-                        "url" => "https://lh3.googleusercontent.com/proxy/lAdTNam3JINVSGA2VYZY0KKRBhR9ldnm43clLbdkVMEwO596H96a_nggpjpul8euXJkdN5BlXnfHfEnALfZxHy-FW5EAaw8Vb_muLAwdgT7c7dvyLVZCILoDVlhoikA6G4SkvKWkL-W-k-Ir1RpzZ9ahPw",
+                        "url" => "https://cdn.shopify.com/s/files/1/0230/2239/articles/How-To-Nose-_-Tail-Grab_1024x1024.jpg?v=1517796651",
                         "type" => "image",
                         "caption" => ""
                     )
@@ -175,6 +182,22 @@ class TrickFixtures extends Fixture
                 "category" => "Grab"
             )
         );
+        $usersArray = array(
+            "1" => array(
+                "userName" => "admin",
+                "email" => "admin@snowtricks.fr",
+                "password" => "admin"
+            )
+        );
+
+        foreach ($usersArray as $userFromArray) {
+            $user = new User();
+            $user->setUserName($userFromArray['userName']);
+            $user->setEmail($userFromArray['email']);
+            $user->setPassword($this->encoder->encodePassword($user, $userFromArray['password']));
+
+            $manager->persist($user);
+        }
 
         foreach ($tricksArray as $trickFromArray) {
             $trick = new Trick();
@@ -183,6 +206,7 @@ class TrickFixtures extends Fixture
             $trick->setDescription($trickFromArray['description']);
             $trick->setSlug($trickFromArray['slug']);
             $trick->setCategory($trickFromArray['category']);
+            $trick->setAuthor($user);
 
             $manager->persist($trick);
 
@@ -192,6 +216,7 @@ class TrickFixtures extends Fixture
                 $media->setUrl($mediaFromArray['url']);
                 $media->setType($mediaFromArray['type']);
                 $media->setCaption($mediaFromArray['caption']);
+
                 $manager->persist($media);
             }
 

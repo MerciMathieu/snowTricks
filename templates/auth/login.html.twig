@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se connecter - {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/css/authentication.css">
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <section id="login">
+        <div class="mb-5 container w-25">
+
+
+            {% if hasError %}
+                <div class="alert alert-danger">Le nom d'utilisateur/mot de passe est invalide</div>
+            {% endif %}
+
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <form action="{{ path('login') }}" method="post">
+                <h1 class="my-5 text-center">Se connecter</h1>
+                <div class="form-group">
+                    <div class="form-row mb-3">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" class="form-control" name="_username" placeholder="Entrez votre email" value="{{ lastUserName }}" required>
+                    </div>
+                    <div class="form-row mb-3">
+                        <label for="password">Mot de passe</label>
+                        <input id="password" type="password" class="form-control" name="_password" placeholder="Mot de passe..." required>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn btn-dark">Se connecter</button>
+                    </div>
+                </div>
+            </form>
+            <div class="text-center my-5">
+                <a href="{{ path('forgot_password') }}">Mot de passe oublié ?</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
