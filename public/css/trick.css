@@ -1,8 +1,10 @@
-section#trick img, p.description {
+section#trick img,
+p.description {
   width: 50% ;
 }
 
-#carouselImages, #carouselVideos {
+#carouselImages,
+#carouselVideos {
   width: 25%;
   height: 100%;
   height: -webkit-fill-available;
@@ -21,7 +23,8 @@ section#trick .comment img {
 }
 
 @media screen and (max-width: 992px){
-  section#trick img, p.description, #carouselImages, #carouselVideos {
+  section#trick img, p.description,
+  #carouselImages, #carouselVideos {
     width: 100% ;
   }
   .collapse:not(.show) {

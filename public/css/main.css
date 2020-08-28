@@ -61,7 +61,9 @@ hr {
   width: 50%;
 }
 
-input.form-control , textarea.form-control {
+input.form-control,
+textarea.form-control,
+select.form-control {
   font-size: 2rem;
 }
 
@@ -73,6 +75,4 @@ button.btn {
   hr {
     width: 100%;
   }
-
-  
 }

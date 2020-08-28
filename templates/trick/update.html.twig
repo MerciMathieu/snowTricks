@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter une figure - {{ parent() }}{% endblock %}
+{% block title %}Modifier une figure - {{ parent() }}{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="/css/form.css">
@@ -10,11 +10,12 @@
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
-    <section id="trickAdd">
+    <section id="trickUpdate">
         <div class="mb-5 container w-25">
-            <h1 class="my-5 text-center">Ajouter une figure</h1>
+            <h1 class="my-5 text-center">Modifier la figure</h1>
+            <h2>{{ trick.title }}</h2>
             {{ form_start(form) }}
-                {{ form_widget(form) }}
+            {{ form_widget(form) }}
             {{ form_end(form) }}
         </div>
     </section>

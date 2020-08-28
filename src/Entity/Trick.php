@@ -6,6 +6,7 @@ use App\Repository\TrickRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * @ORM\Entity(repositoryClass=TrickRepository::class)
@@ -47,7 +48,7 @@ class Trick
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable = true)
      */
     private $slug;
 
@@ -149,9 +150,10 @@ class Trick
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(): self
     {
-        $this->slug = $slug;
+        $slugger = new AsciiSlugger();
+        $this->slug = $slugger->slug($this->title, '-');
 
         return $this;
     }
@@ -168,7 +170,7 @@ class Trick
         return $this;
     }
 
-    public function getFirstImageUrl(): string
+    public function getFirstImageUrl(): ?string
     {
         $images = $this->getTypedMediasUrl(Media::TYPE_IMAGE);
         return array_shift($images);

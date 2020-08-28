@@ -15,7 +15,7 @@
     <section id="tricks">
         <h1 class="m-5 pt-5 text-center">Tricks
             {% if app.user %}
-                <a href="{{ path('add_trick') }}" title="Ajouter une figure"><i class="fas fa-plus-circle card-icon ml-5"></i></a>
+                <a href="{{ path('trick_add') }}" title="Ajouter une figure"><i class="fas fa-plus-circle card-icon ml-5"></i></a>
             {% endif %}
         </h1>
         <hr />
@@ -34,8 +34,8 @@
                     {% if app.user %}
                         <div class="controls">
                             <div class="text-right">
-                                <a href="#" class="card-icon" title="Modifier la figure"><i class="fas fa-pen-square"></i></a>
-                                <a href="#" class="card-icon ml-4" title="Supprimer la figure"><i class="fas fa-trash"></i></a>
+                                <a href="{{ path('trick_update', {slug: trick.slug}) }}" class="card-icon" title="Modifier la figure"><i class="fas fa-pen-square"></i></a>
+                                <a href="{{ path('trick_delete', {id: trick.id}) }}" class="card-icon ml-4" title="Supprimer la figure"><i class="fas fa-trash"></i></a>
                             </div>
                         </div>
                     {% endif %}

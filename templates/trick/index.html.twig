@@ -13,73 +13,75 @@
             <h1 class="m-5">{{ trick.title }}</h1>
             <img src="{{ trick.firstImageUrl }}" class="img img-fluid text-left" alt="image d'un {{ trick.title }}">
             <div class="content mb-5 p-3">
-                <small>Ajouté le {{ trick.createdAt|date('m/d/Y à h:i') }} par {{ trick.author.userNickName }} | Catégorie: {{ trick.category }} | <a href="#comments"> 0 commentaires</a>
+                <small>Ajouté le {{ trick.createdAt|date('m/d/Y à h:i') }} par {{ trick.author.userNickName }} | Catégorie: {{ trick.category }} | <a href="#comments" title="Vers les commentaires"> 0 commentaires</a>
                 </small>
                 {% if app.user %}
                     <div class="controls">
-                        <a href="#" class="card-icon"><i class="fas fa-pen-square"></i></a>
-                        <a href="#" class="card-icon ml-4"><i class="fas fa-trash"></i></a>
+                        <a href="#" class="card-icon" title="Modifier la figure"><i class="fas fa-pen-square"></i></a>
+                        <a href="#" class="card-icon ml-4" title="Supprimer la figure"><i class="fas fa-trash"></i></a>
                     </div>
                 {% endif %}
                 <hr>
                 <p class="mb-3 font-weight-bold">{{ trick.shortDescription }}</p>
-                <hr>
-                <a class="d-md-none btn btn-secondary btn-lg" data-toggle="collapse" href="#medias" role="button" aria-expanded="false" aria-controls="medias">
-                    Voir les médias
-                </a>
-                <div id="medias" class="d-flex justify-content-center flex-column flex-lg-row collapse">
-                    <div id="carouselImages" class="carousel slide m-3" data-ride="">
-                        <ol class="carousel-indicators">
-                            {% if  trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
-                                {% for imageUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
-                                    <li data-target="#carouselImages" data-slide-to="{{ loop.index }}" class="{%if loop.index == 1%} active {%endif%}"></li>
-                                {% endfor %}
-                            </ol>
-                            <div class="carousel-inner">
-                                {% for imageUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
-                                    <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
-                                        <img class="d-block img-fluid w-100" src="{{ imageUrl }}" alt="Slide {{ loop.index }}">
-                                    </div>
-                                {% endfor %}
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselImages" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselImages" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                    {% endif %}
-                    {% if  trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_VIDEO'))%}
-                        <div id="carouselVideos" class="carousel slide m-3" data-ride="">
+                {% if trick.medias %}
+                    <hr>
+                    <a class="d-md-none btn btn-secondary btn-lg" data-toggle="collapse" href="#medias" role="button" aria-expanded="false" aria-controls="medias" title="Voir les médias">
+                        Voir les médias
+                    </a>
+                    <div id="medias" class="d-flex justify-content-center flex-column flex-lg-row collapse">
+                        <div id="carouselImages" class="carousel slide m-3" data-ride="">
                             <ol class="carousel-indicators">
-                                {% for videoUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_VIDEO')) %}
-                                    <li data-target="#carouselVideos" data-slide-to="{{ loop.index }}" class="{% if loop.index == 1 %} active {%endif%}"></li>
-                                {% endfor %}
-                            </ol>
-                            <div class="carousel-inner">
-                                {% for videoUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_VIDEO')) %}
-                                    <div class="carousel-item {% if loop.index == 1 %} active {%endif%}">
-                                        <div class="embed-responsive embed-responsive-16by9">
-                                            <iframe class="embed-responsive-item w-100" src="{{ videoUrl }}" allowfullscreen></iframe>
+                                {% if  trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
+                                    {% for imageUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
+                                        <li data-target="#carouselImages" data-slide-to="{{ loop.index }}" class="{%if loop.index == 1%} active {%endif%}"></li>
+                                    {% endfor %}
+                                </ol>
+                                <div class="carousel-inner">
+                                    {% for imageUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
+                                        <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+                                            <img class="d-block img-fluid w-100" src="{{ imageUrl }}" alt="Slide {{ loop.index }}">
                                         </div>
-                                    </div>
-                                {% endfor %}
+                                    {% endfor %}
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselImages" role="button" data-slide="prev" title="Précédent">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselImages" role="button" data-slide="next" title="Suivant">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
                             </div>
-                            <a class="carousel-control-prev" href="#carouselVideos" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselVideos" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
+                        {% endif %}
+                        {% if  trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_VIDEO'))%}
+                            <div id="carouselVideos" class="carousel slide m-3" data-ride="">
+                                <ol class="carousel-indicators">
+                                    {% for videoUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_VIDEO')) %}
+                                        <li data-target="#carouselVideos" data-slide-to="{{ loop.index }}" class="{% if loop.index == 1 %} active {%endif%}"></li>
+                                    {% endfor %}
+                                </ol>
+                                <div class="carousel-inner">
+                                    {% for videoUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_VIDEO')) %}
+                                        <div class="carousel-item {% if loop.index == 1 %} active {%endif%}">
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item w-100" src="{{ videoUrl }}" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselVideos" role="button" data-slide="prev" title="Précédent">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselVideos" role="button" data-slide="next" title="Suivant">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        {% endif %}
+                        <hr>
                     {% endif %}
                 </div>
-                <hr>
                 <h2 class="my-5 font-weight-bold">Description</h2>
                 <p class="m-auto description">{{ trick.description }}</p>
                 <hr>
@@ -91,7 +93,7 @@
                     {# TODO #}
                     <h1>FORMULAIRE AJOUT COMMENTAIRES ICI</h1>
                 {% else %}
-                    <p class="mb-5"><a href="{{ path('register') }}">Inscrivez-vous</a> ou <a href="{{ path('login') }}">connectez vous</a> pour commenter cet article</p>
+                    <p class="mb-5"><a href="{{ path('register') }}" title="S'inscrire">Inscrivez-vous</a> ou <a href="{{ path('login') }}" title="Se connecter">connectez vous</a> pour commenter cet article</p>
                 {% endif %}
             </div>
             <div id="comments" class="my-5 pb-5">
