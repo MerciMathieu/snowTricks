@@ -13,13 +13,22 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TrickType extends AbstractType
 {
-    private function getConfigurations($label, $placeholder = '', $class = '', $options = [])
+    private function getConfigurations(
+        string $label,
+        string $placeholder = '',
+        string $class = '',
+        int $rows = null,
+        int $cols = null,
+        $options = []
+    )
     {
         return array_merge([
             'label' => $label,
             'attr' => [
                 'placeholder' => $placeholder,
-                'class' => $class
+                'class' => $class,
+                'rows' => $rows,
+                'cols' => $cols
             ]
         ], $options);
     }
@@ -29,8 +38,18 @@ class TrickType extends AbstractType
         $builder
             ->add('title', TextType::class, $this->getConfigurations("Titre", "Le nom de la figure"))
             ->add('shortDescription', TextType::class, $this->getConfigurations("Description courte", "En quelques mots..."))
-            ->add('description', TextareaType::class, $this->getConfigurations("Description", "Une description complète"))
-            ->add('category', ChoiceType::class,[
+            ->add(
+                'description',
+                TextareaType::class,
+                $this->getConfigurations(
+                    "Description",
+                    "Une description complète",
+                    '',
+                    10,
+                    null
+                )
+            )
+            ->add('category', ChoiceType::class, [
                 'choices' => [
                     'grab' => 'Grab',
                     'ride' => 'Ride',
@@ -39,7 +58,7 @@ class TrickType extends AbstractType
                     'slide' => 'Slide'
                 ]
             ])
-            ->add('save', SubmitType::class, $this->getConfigurations("Ajouter la figure", "", "btn btn-dark"))
+            ->add('save', SubmitType::class, $this->getConfigurations("Valider", "", "btn btn-dark"))
         ;
     }
 

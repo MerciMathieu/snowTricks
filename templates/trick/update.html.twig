@@ -12,11 +12,12 @@
 {% block body %}
     <section id="trickUpdate">
         <div class="mb-5 container w-25">
-            <h1 class="my-5 text-center">Modifier la figure</h1>
-            <h2>{{ trick.title }}</h2>
+            <h1 class="mt-5 text-center">Modifier la figure</h1>
+            <h2 class="mb-5 text-center">"{{ trick.title }}"</h2>
             {{ form_start(form) }}
             {{ form_widget(form) }}
             {{ form_end(form) }}
+            <a href="{{ path('trick', {slug: trick.slug}) }}" title="Retour à la page de la figure"><i class="fas fa-arrow-left mr-3"></i>Retour</a>
         </div>
     </section>
 {% endblock %}

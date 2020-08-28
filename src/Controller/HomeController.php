@@ -34,11 +34,12 @@ class HomeController extends AbstractController
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($trick);
             $trick->setAuthor($this->getUser());
             $trick->setSlug($trick->getSlug());
             $manager->persist($trick);
             $manager->flush();
+
+            $this->addFlash('success', "Félicitations! Vous avez créé une figure");
 
             return $this->redirectToRoute('trick', [
                 'slug' => $trick->getSlug()
@@ -57,11 +58,15 @@ class HomeController extends AbstractController
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($trick);
-            $trick->setAuthor($this->getUser());
             $trick->setSlug($trick->getSlug());
             $manager->persist($trick);
             $manager->flush();
+
+            $this->addFlash('success', "La figure a bien été modifiée.");
+
+            return $this->redirectToRoute('trick', [
+               'slug' => $trick->getSlug()
+            ]);
         }
         return $this->render('trick/update.html.twig', [
             'form' => $form->createView(),

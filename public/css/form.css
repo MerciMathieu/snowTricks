@@ -1,9 +1,7 @@
 section#forgotPassword,
 section#login,
 section#register,
-section#resetPassword,
-section#trickAdd,
-section#trickUpdate {
+section#resetPassword {
   height: calc(100vh - 300px);
   position: relative;
 }
@@ -11,9 +9,7 @@ section#trickUpdate {
 section#forgotPassword .container,
 section#login .container,
 section#register .container,
-section#resetPassword .container,
-section#trickAdd .container,
-section#trickUpdate .container {
+section#resetPassword .container {
   position: absolute;
   top: 50%;
   left: 50%;

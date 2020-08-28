@@ -10,28 +10,33 @@
 {% block body %}
     <section id="trick">
         <div class="text-center mb-5">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success m-auto w-50 my-5 text-center">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <h1 class="m-5">{{ trick.title }}</h1>
-            <img src="{{ trick.firstImageUrl }}" class="img img-fluid text-left" alt="image d'un {{ trick.title }}">
+            <img src="{{ trick.firstImageUrl }}" class="img img-fluid text-left" alt="image de la figure {{ trick.title }}">
             <div class="content mb-5 p-3">
                 <small>Ajouté le {{ trick.createdAt|date('m/d/Y à h:i') }} par {{ trick.author.userNickName }} | Catégorie: {{ trick.category }} | <a href="#comments" title="Vers les commentaires"> 0 commentaires</a>
                 </small>
                 {% if app.user %}
                     <div class="controls">
-                        <a href="#" class="card-icon" title="Modifier la figure"><i class="fas fa-pen-square"></i></a>
-                        <a href="#" class="card-icon ml-4" title="Supprimer la figure"><i class="fas fa-trash"></i></a>
+                        <a href="{{ path('trick_update', {slug: trick.slug}) }}" class="card-icon" title="Modifier la figure"><i class="fas fa-pen-square"></i></a>
+                        <a href="{{ path('trick_delete', {id: trick.id}) }}" class="card-icon ml-4" title="Supprimer la figure" onclick="return confirm('Êtes vous certain de vouloir supprimer la figure {{ trick.title }}?')"><i class="fas fa-trash"></i></a>
                     </div>
                 {% endif %}
                 <hr>
                 <p class="mb-3 font-weight-bold">{{ trick.shortDescription }}</p>
-                {% if trick.medias %}
+                {% if trick.medias is not empty %}
                     <hr>
                     <a class="d-md-none btn btn-secondary btn-lg" data-toggle="collapse" href="#medias" role="button" aria-expanded="false" aria-controls="medias" title="Voir les médias">
                         Voir les médias
                     </a>
                     <div id="medias" class="d-flex justify-content-center flex-column flex-lg-row collapse">
                         <div id="carouselImages" class="carousel slide m-3" data-ride="">
-                            <ol class="carousel-indicators">
-                                {% if  trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
+                            {% if  trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
+                                <ol class="carousel-indicators">
                                     {% for imageUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
                                         <li data-target="#carouselImages" data-slide-to="{{ loop.index }}" class="{%if loop.index == 1%} active {%endif%}"></li>
                                     {% endfor %}
@@ -79,9 +84,9 @@
                                 </a>
                             </div>
                         {% endif %}
-                        <hr>
-                    {% endif %}
-                </div>
+                    </div>
+                {% endif %}
+                <hr>
                 <h2 class="my-5 font-weight-bold">Description</h2>
                 <p class="m-auto description">{{ trick.description }}</p>
                 <hr>
