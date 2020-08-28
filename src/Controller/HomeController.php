@@ -76,8 +76,7 @@ class HomeController extends AbstractController
     {
         $manager->remove($trick);
         $manager->flush();
-
-        $this->addFlash('success', "La figure {$trick->getTitle()} a bien été supprimée");
+        $this->addFlash('success', "La figure {$trick->getTitle()} a été supprimée");
 
         return $this->redirectToRoute('home');
     }

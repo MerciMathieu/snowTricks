@@ -19,6 +19,11 @@
             {% endif %}
         </h1>
         <hr />
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success m-auto w-50 text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
         <div class="row justify-content-lg-around mt-5">
             {% for trick in tricks %}
                 <div class="card col-12 col-lg-3 img-fluid m-lg-5 mb-5">
@@ -35,7 +40,7 @@
                         <div class="controls">
                             <div class="text-right">
                                 <a href="{{ path('trick_update', {slug: trick.slug}) }}" class="card-icon" title="Modifier la figure"><i class="fas fa-pen-square"></i></a>
-                                <a href="{{ path('trick_delete', {id: trick.id}) }}" class="card-icon ml-4" title="Supprimer la figure"><i class="fas fa-trash"></i></a>
+                                <a href="{{ path('trick_delete', {id: trick.id}) }}" class="card-icon ml-4" title="Supprimer la figure" onclick="return confirm('Êtes vous certain de vouloir supprimer la figure {{ trick.title }}?')"><i class="fas fa-trash"></i></a>
                             </div>
                         </div>
                     {% endif %}
