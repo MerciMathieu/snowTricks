@@ -20,7 +20,7 @@ class TrickFixtures extends Fixture
     {
         $tricksArray = array(
             "1" => array(
-                "name" => "Nose grab",
+                "title" => "Nose grab",
                 "shortDescription" => "Saisie de la partie avant de la planche, avec la main avant",
                 "description" => "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.",
                 "medias" => array(
@@ -54,7 +54,7 @@ class TrickFixtures extends Fixture
                 "category" => "Grab"
             ),
             "2" => array(
-                "name" => "Stalefish",
+                "title" => "Stalefish",
                 "shortDescription" => "Saisie de la carre backside de la planche entre les deux pieds avec la main arrière",
                 "description" => "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.",
                 "medias" => array(
@@ -68,7 +68,7 @@ class TrickFixtures extends Fixture
                 "category" => "Grab"
             ),
             "3" => array(
-                "name" => "360",
+                "title" => "360",
                 "shortDescription" => "Trois six pour un tour complet",
                 "description" => "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.",
                 "medias" => array(
@@ -82,7 +82,7 @@ class TrickFixtures extends Fixture
                 "category" => "Rotation"
             ),
             "4" => array(
-                "name" => "Back flip",
+                "title" => "Back flip",
                 "shortDescription" => "Un back flip est une rotation verticale vers l'arrière.",
                 "description" => "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.",
                 "medias" => array(
@@ -96,7 +96,7 @@ class TrickFixtures extends Fixture
                 "category" => "Rotation"
             ),
             "5" => array(
-                "name" => "Front flip",
+                "title" => "Front flip",
                 "shortDescription" => "Un front flip est une rotation verticale vers l'avant.",
                 "description" => "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else hndures pains to avoid worse pains",
                 "medias" => array(
@@ -110,7 +110,7 @@ class TrickFixtures extends Fixture
                 "category" => "Rotation"
             ),
             "6" => array(
-                "name" => "truck driver",
+                "title" => "truck driver",
                 "shortDescription" => "Saisie du carre avant et carre arrière avec chaque main (comme tenir un volant de voiture)",
                 "description" => "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcome
                 d and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.",
@@ -125,7 +125,7 @@ class TrickFixtures extends Fixture
                 "category" => "Grab"
             ),
             "7" => array(
-                "name" => "japan air",
+                "title" => "japan air",
                 "shortDescription" => "Saisie de l'avant de la planche, avec la main avant, du côté de la carre frontside.",
                 "description" => "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligatio
                 ns of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.",
@@ -140,7 +140,7 @@ class TrickFixtures extends Fixture
                 "category" => "Grab"
             ),
             "8" => array(
-                "name" => "Tail grab",
+                "title" => "Tail grab",
                 "shortDescription" => "Saisie de la partie arrière de la planche, avec la main arrière",
                 "description" => "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.",
                 "medias" => array(
@@ -154,7 +154,7 @@ class TrickFixtures extends Fixture
                 "category" => "Grab"
             ),
             "9" => array(
-                "name" => "indy",
+                "title" => "indy",
                 "shortDescription" => "Saisie de la carre frontside de la planche, entre les deux pieds, avec la main arrière",
                 "description" => "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.",
                 "medias" => array(
@@ -168,7 +168,7 @@ class TrickFixtures extends Fixture
                 "category" => "Grab"
             ),
             "10" => array(
-                "name" => "Mute",
+                "title" => "Mute",
                 "shortDescription" => "Saisie de la carre frontside de la planche entre les deux pieds avec la main avant",
                 "description" => "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.",
                 "medias" => array(
@@ -201,7 +201,7 @@ class TrickFixtures extends Fixture
 
         foreach ($tricksArray as $trickFromArray) {
             $trick = new Trick();
-            $trick->setName($trickFromArray['name']);
+            $trick->setTitle($trickFromArray['title']);
             $trick->setShortDescription($trickFromArray['shortDescription']);
             $trick->setDescription($trickFromArray['description']);
             $trick->setSlug($trickFromArray['slug']);

@@ -10,8 +10,8 @@
 {% block body %}
     <section id="trick">
         <div class="text-center mb-5">
-            <h1 class="m-5">{{ trick.name }}</h1>
-            <img src="{{ trick.firstImageUrl }}" class="img img-fluid text-left" alt="image d'un {{ trick.name }}">
+            <h1 class="m-5">{{ trick.title }}</h1>
+            <img src="{{ trick.firstImageUrl }}" class="img img-fluid text-left" alt="image d'un {{ trick.title }}">
             <div class="content mb-5 p-3">
                 <small>Ajouté le {{ trick.createdAt|date('m/d/Y à h:i') }} par {{ trick.author.userNickName }} | Catégorie: {{ trick.category }} | <a href="#comments"> 0 commentaires</a>
                 </small>

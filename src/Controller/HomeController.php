@@ -19,4 +19,12 @@ class HomeController extends AbstractController
             'tricks' => $tricks
         ]);
     }
+
+    /**
+     * @Route("/trick/add", name="add_trick")
+     */
+    public function addTrick()
+    {
+        return $this->render('trick/add.html.twig');
+    }
 }

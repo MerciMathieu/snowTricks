@@ -9,20 +9,24 @@
 {% block body %}
     <section id="home">
         <div id="goToTricks" class="icon">
-            <a href="#tricks"><i class="fas fa-angle-down"></i></a>
+            <a href="#tricks" title="Aller à la section 'tricks'"><i class="fas fa-angle-down"></i></a>
         </div>
     </section>
     <section id="tricks">
-        <h1 class="m-5 pt-5 text-center">Tricks</h1>
+        <h1 class="m-5 pt-5 text-center">Tricks
+            {% if app.user %}
+                <a href="{{ path('add_trick') }}" title="Ajouter une figure"><i class="fas fa-plus-circle card-icon ml-5"></i></a>
+            {% endif %}
+        </h1>
         <hr />
         <div class="row justify-content-lg-around mt-5">
             {% for trick in tricks %}
                 <div class="card col-12 col-lg-3 img-fluid m-lg-5 mb-5">
                     <div class="text-center">
-                        <p class="my-3">{{ trick.name }}</p>
+                        <p class="my-3">{{ trick.title }}</p>
                     </div>
-                    <a href="{{ path('trick', {slug: trick.slug}) }}">
-                        <img src="{{ trick.firstImageUrl }}" class="card-img-top img-fluid" alt="Image de la figure {{ trick.name }}">
+                    <a href="{{ path('trick', {slug: trick.slug}) }}" title="Voir une figure">
+                        <img src="{{ trick.firstImageUrl }}" class="card-img-top img-fluid" alt="Image de la figure {{ trick.title }}">
                         <div class="card-body">
                             <p class="card-text">{{ trick.shortDescription }}</p>
                         </div>
@@ -30,8 +34,8 @@
                     {% if app.user %}
                         <div class="controls">
                             <div class="text-right">
-                                <a href="#" class="card-icon"><i class="fas fa-pen-square"></i></a>
-                                <a href="#" class="card-icon ml-4"><i class="fas fa-trash"></i></a>
+                                <a href="#" class="card-icon" title="Modifier la figure"><i class="fas fa-pen-square"></i></a>
+                                <a href="#" class="card-icon ml-4" title="Supprimer la figure"><i class="fas fa-trash"></i></a>
                             </div>
                         </div>
                     {% endif %}
@@ -40,6 +44,6 @@
         </div>
     </section>
     <div id="backTop" class="icon text-right d-none d-lg-block">
-        <a href="#top"><i class="fas fa-angle-up"></i></a>
+        <a href="#top" title="Haut de page"><i class="fas fa-angle-up"></i></a>
     </div>
 {% endblock %}
