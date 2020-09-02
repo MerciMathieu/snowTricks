@@ -7,13 +7,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @ORM\Entity(repositoryClass=TrickRepository::class)
  * @ORM\Table(name="trick")
- * @UniqueEntity("slug, title")
+ * @UniqueEntity("slug")
  * @ORM\HasLifecycleCallbacks
+ * @ORM\EntityListeners({"App\EventListener\TrickEntityListener"})
  */
 class Trick
 {
@@ -189,6 +190,13 @@ class Trick
         return $mediasUrl;
     }
 
+    public function computeSlug(SluggerInterface $slugger): void
+    {
+        if (!$this->slug || '-' === $this->slug) {
+            $this->slug = (string) $slugger->slug((string) $this)->lower();
+        }
+    }
+
     /**
      * @return Collection|Media[]
      */
@@ -237,8 +245,6 @@ class Trick
      */
     public function onPrePersist(): void
     {
-        $slugger = new AsciiSlugger();
-        $this->slug = $slugger->slug($this->title, '-');
         $this->createdAt = new \DateTime("now");
     }
 
@@ -247,8 +253,6 @@ class Trick
      */
     public function onPreUpdate(): void
     {
-        $slugger = new AsciiSlugger();
-        $this->slug = $slugger->slug($this->title, '-');
         $this->updatedAt = new \DateTime("now");
     }
 
