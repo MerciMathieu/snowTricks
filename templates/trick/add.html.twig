@@ -3,8 +3,8 @@
 {% block title %}Ajouter une figure - {{ parent() }}{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="/css/form.css">
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
 {% endblock %}
 
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
@@ -14,8 +14,24 @@
         <div class="mb-5 container w-25">
             <h1 class="my-5 text-center">Ajouter une figure</h1>
             {{ form_start(form) }}
-                {{ form_widget(form) }}
+                {{ form_row(form.title) }}
+                {{ form_row(form.shortDescription) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.category) }}
+                <h3>Images</h3>
+                <ul class="medias" data-prototype="{{ form_widget(form.medias.vars.prototype)|e('html_attr') }}">
+                    {% for media in form.medias %}
+                        <li class="list-group-item">{{ form_row(media.url) }}</li>
+                    {% endfor %}
+                </ul>
+                {{ form_row(form.save) }}
             {{ form_end(form) }}
         </div>
     </section>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/addMedia.js') }}"></script>
 {% endblock %}

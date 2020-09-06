@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Media;
 use App\Entity\Trick;
-use App\Entity\User;
 use App\Form\TrickType;
 use App\Repository\TrickRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,12 +30,20 @@ class HomeController extends AbstractController
      */
     public function trickAdd(Request $request, EntityManagerInterface $manager)
     {
-        $trick = new Trick();
+        $trick= new Trick();
+        $media = new Media();
+        $trick->addMedia($media);
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($trick->getMedias() as $media) {
+                $media->setType(Media::TYPE_IMAGE);
+            }
+
             $trick->setAuthor($this->getUser());
             $trick->setSlug($trick->getSlug());
+
             $manager->persist($trick);
             $manager->flush();
 
@@ -45,6 +53,7 @@ class HomeController extends AbstractController
                 'slug' => $trick->getSlug()
             ]);
         }
+
         return $this->render('trick/add.html.twig', [
             'form' => $form->createView()
         ]);

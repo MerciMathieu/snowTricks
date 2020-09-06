@@ -8,13 +8,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TrickRepository::class)
  * @ORM\Table(name="trick")
- * @UniqueEntity("slug")
- * @ORM\HasLifecycleCallbacks
- * @ORM\EntityListeners({"App\EventListener\TrickEntityListener"})
+ * @UniqueEntity("title", message="Ce nom de figure existe déjà. ")
  */
 class Trick
 {
@@ -26,7 +25,7 @@ class Trick
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $title;
 
@@ -51,7 +50,7 @@ class Trick
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable = true, unique=true)
+     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
      */
     private $slug;
 
@@ -61,7 +60,8 @@ class Trick
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick", orphanRemoval=true, cascade={"persist"})
+     * @Assert\Valid
      * @var Media[]
      */
     private $medias;
@@ -192,9 +192,7 @@ class Trick
 
     public function computeSlug(SluggerInterface $slugger): void
     {
-        if (!$this->slug || '-' === $this->slug) {
-            $this->slug = (string) $slugger->slug((string) $this)->lower();
-        }
+        $this->slug = (string) $slugger->slug((string) $this->title)->lower();
     }
 
     /**
@@ -238,22 +236,6 @@ class Trick
         $this->author = $author;
 
         return $this;
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function onPrePersist(): void
-    {
-        $this->createdAt = new \DateTime("now");
-    }
-
-    /**
-     * @ORM\PreUpdate
-     */
-    public function onPreUpdate(): void
-    {
-        $this->updatedAt = new \DateTime("now");
     }
 
     /**

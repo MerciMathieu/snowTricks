@@ -3,8 +3,8 @@
 {% block title %}Modifier une figure - {{ parent() }}{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="/css/form.css">
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
 {% endblock %}
 
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
@@ -15,9 +15,24 @@
             <h1 class="mt-5 text-center">Modifier la figure</h1>
             <h2 class="mb-5 text-center">"{{ trick.title }}"</h2>
             {{ form_start(form) }}
-            {{ form_widget(form) }}
+                {{ form_row(form.title) }}
+                {{ form_row(form.shortDescription) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.category) }}
+                <h3>Images</h3>
+                <ul class="medias" data-prototype="{{ form_widget(form.medias.vars.prototype)|e('html_attr') }}">
+                    {% for media in form.medias %}
+                        <li class="list-group-item">{{ form_row(media.url) }}</li>
+                    {% endfor %}
+                </ul>
+                {{ form_row(form.save) }}
             {{ form_end(form) }}
             <a href="{{ path('trick', {slug: trick.slug}) }}" title="Retour à la page de la figure"><i class="fas fa-arrow-left mr-3"></i>Retour</a>
         </div>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/addMedia.js') }}"></script>
 {% endblock %}

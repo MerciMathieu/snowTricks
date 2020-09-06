@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Trick;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -58,8 +59,14 @@ class TrickType extends AbstractType
                     'slide' => 'Slide'
                 ]
             ])
-            ->add('save', SubmitType::class, $this->getConfigurations("Valider", "", "btn btn-dark"))
-        ;
+            ->add('medias', CollectionType::class, [
+                'entry_type' => MediaType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'by_reference' => false,
+                'allow_delete' => true,
+            ])
+            ->add('save', SubmitType::class, $this->getConfigurations("Valider", "", "btn btn-dark"));
     }
 
     public function configureOptions(OptionsResolver $resolver)
