@@ -217,9 +217,8 @@ class Trick
     {
         if ($this->medias->contains($media)) {
             $this->medias->removeElement($media);
-            // set the owning side to null (unless already changed)
             if ($media->getTrick() === $this) {
-                $media->setTrick(null);
+                $media->setTrick($this);
             }
         }
 
