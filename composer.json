@@ -7,7 +7,7 @@
         "ext-iconv": "*",
         "sensio/framework-extra-bundle": "^5.5",
         "sensiolabs/security-checker": "^6.0",
-        "symfony/asset": "5.1.*",
+        "symfony/asset": "*",
         "symfony/console": "5.1.*",
         "symfony/debug-pack": "*",
         "symfony/dotenv": "5.1.*",
@@ -83,7 +83,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "5.1.*"
+            "require": "*"
         }
     }
 }
