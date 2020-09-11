@@ -175,7 +175,7 @@ class Trick
     public function getFirstImageUrl(): ?string
     {
         $images = $this->getTypedMediasUrl(Media::TYPE_IMAGE);
-        return array_shift($images);
+        return reset($images);
     }
 
     public function getTypedMediasUrl(string $type): array
