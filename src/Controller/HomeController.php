@@ -37,13 +37,10 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            foreach ($trick->getMedias() as $media) {
-                $media->setType(Media::TYPE_IMAGE);
-            }
 
+            $this->setParsedMedias($trick);
             $trick->setAuthor($this->getUser());
             $trick->setSlug($trick->getSlug());
-
             $manager->persist($trick);
             $manager->flush();
 
@@ -67,9 +64,7 @@ class HomeController extends AbstractController
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            foreach ($trick->getMedias() as $media) {
-                $media->setType(Media::TYPE_IMAGE);
-            }
+            $this->setParsedMedias($trick);
             $trick->setSlug($trick->getSlug());
             $manager->persist($trick);
             $manager->flush();
@@ -84,6 +79,30 @@ class HomeController extends AbstractController
             'form' => $form->createView(),
             'trick' => $trick
         ]);
+    }
+
+    private function setParsedMedias(Trick $trick): Media
+    {
+        $media = null;
+        if ($trick->getMedias()) {
+            foreach ($trick->getMedias() as $media) {
+                if (stristr($media->getUrl(), '.jpg') || stristr($media->getUrl(), '.png')){
+                    $media->setType(Media::TYPE_IMAGE);
+                } else {
+                    $videoUrl = $media->getUrl();
+                    if (stripos($videoUrl, 'watch?v=')) {
+                        $videoUrl = str_replace( 'watch?v=', 'embed/', $videoUrl );
+                    }
+                    if (stripos($videoUrl, '&')) {
+                        $videoUrl = strstr($videoUrl, '&', true);
+                    }
+                    $media->setUrl($videoUrl);
+                    $media->setType(Media::TYPE_VIDEO);
+                }
+            }
+        }
+
+        return $media;
     }
 
     /**
