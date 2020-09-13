@@ -16,8 +16,13 @@ section#resetPassword .container {
   transform: translate(-50%, -50%);
 }
 
+.list-group-item .img {
+  width: 200px;
+  padding: 20px;
+}
+
 @media screen and (max-width: 992px) {
-  div.w-25 {
+  div.w-50 {
     width: 100% !important;
   }
 }

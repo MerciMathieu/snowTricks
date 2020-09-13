@@ -36,8 +36,8 @@
                         Voir les médias
                     </a>
                     <div id="medias" class="d-flex justify-content-center flex-column flex-lg-row collapse">
-                        <div id="carouselImages" class="carousel slide m-3" data-ride="">
-                            {% if  trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
+                        {% if  trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
+                            <div id="carouselImages" class="carousel slide m-3" data-ride="">
                                 <ol class="carousel-indicators">
                                     {% for imageUrl in trick.typedMediasUrl(constant('App\\Entity\\Media::TYPE_IMAGE')) %}
                                         <li data-target="#carouselImages" data-slide-to="{{ loop.index }}" class="{%if loop.index == 1%} active {%endif%}"></li>

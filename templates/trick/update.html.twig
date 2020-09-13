@@ -32,7 +32,7 @@
                 <ul class="medias" data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}">
                     {% for video in form.videos %}
                         <li class="list-group-item">
-                            <img src="{{ video.vars.data.url }}" class="img img-fluid text-left" alt="video de la figure {{ trick.title }}">
+                            <embed type="video/webm" src="{{ video.vars.data.url }}" width="200" height="100">
                             {{ form_row(video.url) }}
                         </li>
                     {% endfor %}
