@@ -11,6 +11,11 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class TrickFixtures extends Fixture
 {
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $encoder;
+
     public function __construct(UserPasswordEncoderInterface $encoder)
     {
         $this->encoder = $encoder;
@@ -26,28 +31,23 @@ class TrickFixtures extends Fixture
                 "medias" => array(
                     "1" => array(
                         "url" => "https://ultimatesnowsports.com/wp-content/uploads/2015/08/Nose-grab.jpg",
-                        "type" => "image",
-                        "caption" => "Nose grab"
+                        "type" => "image"
                     ),
                     "2" => array(
                         "url" => "https://cdn.shopify.com/s/files/1/0230/2239/files/3_b5916b1c-dec5-4882-8e5d-abf311e254b3_large.jpg?v=1517870727",
-                        "type" => "image",
-                        "caption" => "Nose grab"
+                        "type" => "image"
                     ),
                     "3" => array(
                         "url" => "https://www.youtube.com/embed/gZFWW4Vus-Q",
-                        "type" => "video",
-                        "caption" => "Comment faire un nose grab"
+                        "type" => "video"
                     ),
                     "4" => array(
                         "url" => "https://www.youtube.com/embed/y2MHu0mbzQw",
-                        "type" => "video",
-                        "caption" => "Nose grab en vidéo"
+                        "type" => "video"
                     ),
                     "5" => array(
                         "url" => "https://coresites-cdn-adm.imgix.net/whitelines_new/wp-content/uploads/2014/01/Trick-Nose-Grab-620x440.jpg",
-                        "type" => "image",
-                        "caption" => "Nose grab"
+                        "type" => "image"
                     )
                 ),
                 "slug" => "nose-grab",
@@ -61,7 +61,6 @@ class TrickFixtures extends Fixture
                     "1" => array(
                         "url" => "https://i.ytimg.com/vi/f9FjhCt_w2U/sddefault.jpg",
                         "type" => "image",
-                        "caption" => ""
                     )
                 ),
                 "slug" => "stalefish",
@@ -74,8 +73,7 @@ class TrickFixtures extends Fixture
                 "medias" => array(
                     "1" => array(
                         "url" => "https://coresites-cdn-adm.imgix.net/whitelines_new/wp-content/uploads/2015/12/how-to-frontside-360-snowboard-800.jpg",
-                        "type" => "image",
-                        "caption" => ""
+                        "type" => "image"
                     )
                 ),
                 "slug" => "360",
@@ -88,8 +86,7 @@ class TrickFixtures extends Fixture
                 "medias" => array(
                     "1" => array(
                         "url" => "https://i.pinimg.com/originals/54/98/79/5498793f4249140638cdfe97c66aa6dd.jpg",
-                        "type" => "image",
-                        "caption" => ""
+                        "type" => "image"
                     )
                 ),
                 "slug" => "back-flip",
@@ -102,8 +99,7 @@ class TrickFixtures extends Fixture
                 "medias" => array(
                     "1" => array(
                         "url" => "https://coresites-cdn-adm.imgix.net/whitelines_new/wp-content/uploads/2012/12/IMG_7636-620x413.jpg",
-                        "type" => "image",
-                        "caption" => ""
+                        "type" => "image"
                     )
                 ),
                 "slug" => "front-flip",
@@ -117,8 +113,7 @@ class TrickFixtures extends Fixture
                 "medias" => array(
                     "1" => array(
                         "url" => "https://snowboard.frederic-malard.com/illustrations/truck-driver-1.jpg",
-                        "type" => "image",
-                        "caption" => ""
+                        "type" => "image"
                     )
                 ),
                 "slug" => "truck-driver",
@@ -132,8 +127,7 @@ class TrickFixtures extends Fixture
                 "medias" => array(
                     "1" => array(
                         "url" => "https://www.alexandrecorroy.fr/snowtricks/uploads/pictures/front_japan_air.jpg",
-                        "type" => "image",
-                        "caption" => ""
+                        "type" => "image"
                     )
                 ),
                 "slug" => "japan-air",
@@ -146,8 +140,7 @@ class TrickFixtures extends Fixture
                 "medias" => array(
                     "1" => array(
                         "url" => "https://cdn.shopify.com/s/files/1/0230/2239/articles/How-To-Nose-_-Tail-Grab_1024x1024.jpg?v=1517796651",
-                        "type" => "image",
-                        "caption" => ""
+                        "type" => "image"
                     )
                 ),
                 "slug" => "tail-grab",
@@ -160,8 +153,7 @@ class TrickFixtures extends Fixture
                 "medias" => array(
                     "1" => array(
                         "url" => "https://arts-majeurs.com/uploads/images/tricks/16.jpg",
-                        "type" => "image",
-                        "caption" => ""
+                        "type" => "image"
                     )
                 ),
                 "slug" => "indy",
@@ -174,8 +166,7 @@ class TrickFixtures extends Fixture
                 "medias" => array(
                     "1" => array(
                         "url" => "https://www.risorseonline.com/tutorial/snowboard/mute.jpg",
-                        "type" => "image",
-                        "caption" => ""
+                        "type" => "image"
                     )
                 ),
                 "slug" => "mute",
@@ -215,7 +206,6 @@ class TrickFixtures extends Fixture
                 $media->setTrick($trick);
                 $media->setUrl($mediaFromArray['url']);
                 $media->setType($mediaFromArray['type']);
-                $media->setCaption($mediaFromArray['caption']);
 
                 $manager->persist($media);
             }

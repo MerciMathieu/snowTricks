@@ -203,6 +203,32 @@ class Trick
         return $this->medias;
     }
 
+    public function getVideos(): Collection
+    {
+        $videos = new ArrayCollection();
+
+        foreach ($this->medias as $media) {
+            if ($media->getType() === Media::TYPE_VIDEO) {
+                $videos->add($media);
+            }
+        }
+
+        return $videos;
+    }
+
+    public function getImages(): Collection
+    {
+        $images = new ArrayCollection();
+
+        foreach ($this->medias as $media) {
+            if ($media->getType() === Media::TYPE_IMAGE) {
+                $images->add($media);
+            }
+        }
+
+        return $images;
+    }
+
     public function addMedia(Media $media): self
     {
         if (!$this->medias->contains($media)) {
@@ -220,6 +246,26 @@ class Trick
         }
 
         return $this;
+    }
+
+    public function addImage(Media $image): self
+    {
+        return $this->addMedia($image);
+    }
+
+    public function removeImage(Media $image): self
+    {
+        return $this->removeMedia($image);
+    }
+
+    public function addVideo(Media $video): self
+    {
+        return $this->addMedia($video);
+    }
+
+    public function removeVideo(Media $video): self
+    {
+        return $this->removeMedia($video);
     }
 
     public function getAuthor(): User

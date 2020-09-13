@@ -11,7 +11,7 @@
 
 {% block body %}
     <section id="trickUpdate">
-        <div class="mb-5 container w-25">
+        <div class="mb-5 container w-50">
             <h1 class="mt-5 text-center">Modifier la figure</h1>
             <h2 class="mb-5 text-center">"{{ trick.title }}"</h2>
             {{ form_start(form) }}
@@ -19,10 +19,22 @@
                 {{ form_row(form.shortDescription) }}
                 {{ form_row(form.description) }}
                 {{ form_row(form.category) }}
-                <h3>Medias (Url d'une image ou lien youtube)</h3>
-                <ul class="medias" data-prototype="{{ form_widget(form.medias.vars.prototype)|e('html_attr') }}">
-                    {% for media in form.medias %}
-                        <li class="list-group-item">{{ form_row(media.url) }}</li>
+                <h3>Images</h3>
+                <ul class="medias" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+                    {% for image in form.images %}
+                        <li class="list-group-item">
+                            <img src="{{ image.vars.data.url }}" class="img img-fluid text-left" alt="image de la figure {{ trick.title }}">
+                            {{ form_row(image.url) }}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <h3>Videos</h3>
+                <ul class="medias" data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}">
+                    {% for video in form.videos %}
+                        <li class="list-group-item">
+                            <img src="{{ video.vars.data.url }}" class="img img-fluid text-left" alt="video de la figure {{ trick.title }}">
+                            {{ form_row(video.url) }}
+                        </li>
                     {% endfor %}
                 </ul>
                 {{ form_row(form.save) }}

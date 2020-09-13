@@ -59,7 +59,14 @@ class TrickType extends AbstractType
                     'slide' => 'Slide'
                 ]
             ])
-            ->add('medias', CollectionType::class, [
+            ->add('images', CollectionType::class, [
+                'entry_type' => MediaType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'by_reference' => false,
+                'allow_delete' => true,
+            ])
+            ->add('videos', CollectionType::class, [
                 'entry_type' => MediaType::class,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,

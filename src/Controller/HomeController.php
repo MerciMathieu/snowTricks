@@ -81,7 +81,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-    private function setParsedMedias(Trick $trick): Media
+    private function setParsedMedias(Trick $trick): ?Media
     {
         $media = null;
         if ($trick->getMedias()) {
