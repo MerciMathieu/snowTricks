@@ -217,9 +217,6 @@ class Trick
     {
         if ($this->medias->contains($media)) {
             $this->medias->removeElement($media);
-            if ($media->getTrick() === $this) {
-                $media->setTrick($this);
-            }
         }
 
         return $this;

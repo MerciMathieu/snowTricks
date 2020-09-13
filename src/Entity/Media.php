@@ -23,7 +23,7 @@ class Media
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\NotBlank(message="Entrez une url")
+     * @Assert\Url()
      */
     private $url;
 
