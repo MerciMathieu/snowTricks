@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur 500 - {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/error.css') }}">
+{% endblock %}
+
+{% block body %}
+    <section id="error500" class="text-center">
+        <h1 class="text-center my-5">Oups... il y'a eu un problème!</h1>
+        <a href="{{ path('home') }}" type="button" class="btn btn-dark text-white">Retour au site</a>
+    </section>
+{% endblock %}
