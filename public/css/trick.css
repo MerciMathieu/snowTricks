@@ -27,4 +27,8 @@ section#trick .comment img {
   .collapse:not(.show) {
     display: none !important;
   }
+
+  section#trick .comment img {
+    width: 45px;
+  }
 }
