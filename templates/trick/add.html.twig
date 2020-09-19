@@ -7,37 +7,11 @@
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
 {% endblock %}
 
-{% form_theme form 'bootstrap_4_layout.html.twig' %}
-
 {% block body %}
     <section id="trickAdd">
         <div class="mb-5 container w-50">
             <h1 class="my-5 text-center">Ajouter une figure</h1>
-            {{ form_start(form) }}
-                {{ form_row(form.title) }}
-                {{ form_row(form.shortDescription) }}
-                {{ form_row(form.description) }}
-                {{ form_row(form.category) }}
-                <h3>Images</h3>
-                <ul class="medias" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
-                    {% for image in form.images %}
-                        <li class="list-group-item">
-                            <img src="{{ image.vars.data.url }}" class="img img-fluid text-left" alt="image de la figure {{ trick.title }}">
-                            {{ form_row(image.url) }}
-                        </li>
-                    {% endfor %}
-                </ul>
-                <h3>Videos</h3>
-                <ul class="medias" data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}">
-                    {% for video in form.videos %}
-                        <li class="list-group-item">
-                            <embed type="video/webm" src="{{ video.vars.data.url }}" width="200" height="100">
-                            {{ form_row(video.url) }}
-                        </li>
-                    {% endfor %}
-                </ul>
-                {{ form_row(form.save) }}
-            {{ form_end(form) }}
+            {% include( 'trick/_form.html.twig') %}
         </div>
     </section>
 

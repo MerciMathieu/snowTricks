@@ -1,26 +1,39 @@
-var $collectionHolder;
+var $collectionHolderVideo;
+var $collectionHolderImage;
 
 // setup an "add a media" link
-var $addMediaButton = $('<button type="button" class="add_media_url btn btn-outline-info">+</button>');
-var $newLinkLi = $('<li class="list-unstyled text-right"></li>').append($addMediaButton);
+var $addVideoButton = $('<button type="button" class="add_video_url btn btn-outline-info">+</button>');
+var $addImageButton = $('<button type="button" class="add_image_url btn btn-outline-info">+</button>');
+var $newLinkLiVideo = $('<li class="list-unstyled text-right"></li>').append($addVideoButton);
+var $newLinkLiImage = $('<li class="list-unstyled text-right"></li>').append($addImageButton);
 
 jQuery(document).ready(function() {
     // Get the ul that holds the collection of medias
-    $collectionHolder = $('ul.medias');
+    $collectionHolderVideo = $('ul.videos');
+    $collectionHolderImage = $('ul.images');
 
     // add the "add a media" anchor and li to the medias ul
-    $collectionHolder.append($newLinkLi);
+    $collectionHolderVideo.append($newLinkLiVideo);
+    $collectionHolderImage.append($newLinkLiImage);
 
     // count the current form inputs we have (e.g. 2), use that as the new
     // index when inserting a new item (e.g. 2)
-    $collectionHolder.data('index', $collectionHolder.find('input').length);
+    $collectionHolderVideo.data('index', $collectionHolderVideo.find('input').length);
+    $collectionHolderImage.data('index', $collectionHolderImage.find('input').length);
 
-    $addMediaButton.on('click', function(e) {
+    $addVideoButton.on('click', function(e) {
         // add a new tag form (see next code block)
-        addMediaForm($collectionHolder, $newLinkLi);
+        addMediaForm($collectionHolderVideo, $newLinkLiVideo);
+    });
+    $addImageButton.on('click', function(e) {
+        // add a new tag form (see next code block)
+        addMediaForm($collectionHolderImage, $newLinkLiImage);
     });
 
-    $collectionHolder.find('li.list-group-item').each(function() {
+    $collectionHolderVideo.find('li.list-group-item').each(function() {
+        addMediaFormDeleteBtn($(this));
+    });
+    $collectionHolderImage.find('li.list-group-item').each(function() {
         addMediaFormDeleteBtn($(this));
     });
 });

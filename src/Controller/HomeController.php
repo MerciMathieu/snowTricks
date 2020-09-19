@@ -31,16 +31,12 @@ class HomeController extends AbstractController
     public function trickAdd(Request $request, EntityManagerInterface $manager)
     {
         $trick= new Trick();
-        $media = new Media();
-        $trick->addMedia($media);
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->setParsedMedias($trick);
             $trick->setAuthor($this->getUser());
-            $trick->setSlug($trick->getSlug());
             $manager->persist($trick);
             $manager->flush();
 
@@ -63,9 +59,9 @@ class HomeController extends AbstractController
     {
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $this->setParsedMedias($trick);
-            $trick->setSlug($trick->getSlug());
             $manager->persist($trick);
             $manager->flush();
 
@@ -84,6 +80,7 @@ class HomeController extends AbstractController
     private function setParsedMedias(Trick $trick): ?Media
     {
         $media = null;
+
         if ($trick->getMedias()) {
             foreach ($trick->getMedias() as $media) {
                 if (stristr($media->getUrl(), '.jpg') || stristr($media->getUrl(), '.png')){

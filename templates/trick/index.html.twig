@@ -18,7 +18,7 @@
             <h1 class="m-5">{{ trick.title }}</h1>
             <img src="{{ trick.firstImageUrl }}" class="img img-fluid text-left" alt="image de la figure {{ trick.title }}">
             <div class="content mb-5 p-3">
-                <small>Ajouté le {{ trick.createdAt|date('m/d/Y à h:i') }} par {{ trick.author.userNickName }} | Catégorie: {{ trick.category }} | <a href="#comments" title="Vers les commentaires">
+                <small>Ajouté le {{ trick.createdAt|date('m/d/Y à H:i') }} par {{ trick.author.userNickName }} | Catégorie: {{ trick.category }} | <a href="#comments" title="Vers les commentaires">
                         {{ comments|length }} commentaire{% if comments|length == 0 or comments|length > 1 %}s{% endif %}
                     </a>
                 </small>
@@ -97,30 +97,54 @@
         <div class="container mb-5 pb-5">
             <div class="leaveComment text-center">
                 {% if app.user %}
-                    {# TODO #}
-                    <h1>FORMULAIRE AJOUT COMMENTAIRES ICI</h1>
+                    {{ form_start(comment_form) }}
+                        <div class="text-left">
+                            {{ form_widget(comment_form) }}
+                        </div>
+                    {{ form_end(comment_form) }}
                 {% else %}
                     <p class="mb-5"><a href="{{ path('register') }}" title="S'inscrire">Inscrivez-vous</a> ou <a href="{{ path('login') }}" title="Se connecter">connectez vous</a> pour commenter cet article</p>
                 {% endif %}
             </div>
             <div id="comments" class="my-5 pb-5">
-                <p>2 commentaires(s)</p>
-                <div class="comment mb-5 p-5">
-                    <div class="card-header mb-3">Mathieu<small class="text-muted ml-2"> le 17/09/2020 à 16h34</small></div>
-                    <img src="https://picsum.photos/id/1/100/100" alt="avatar de Mathieu" class="float-right">
-                    <p class="m-5 d-inline">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                    </p>
-                </div>
-                <hr>
-                <div class="comment mb-5 p-5">
-                    <div class="card-header mb-3">Mathieu<small class="text-muted ml-2"> le 17/09/2020 à 16h34</small></div>
-                    <img src="https://picsum.photos/id/1/100/100" alt="avatar de Mathieu" class="float-right">
-                    <p class="m-5 d-inline">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                    </p>
-                </div>
-                <hr>
+                <p>
+                    {{ comments|length }} commentaire{% if comments|length == 0 or comments|length > 1 %}s{% endif %}
+                </p>
+                {% if comments|length > 0 %}
+                    {% for comment in comments %}
+                        <div class="comment mb-5 p-5">
+                            <div class="card-header mb-3">{{ comment.author.userNickName }}<small class="text-muted ml-2"> le {{ comment.createdAt|date('d/m/Y à H:i:s')}}</small></div>
+                            <img src="https://picsum.photos/id/1/100/100" alt="avatar de Mathieu" class="float-right">
+                            <p class="m-5 d-inline">
+                                {{ comment.content }}
+                            </p>
+                        </div>
+                        <hr class="mb-5">
+                    {% endfor %}
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item {% if page == 1 %}disabled{% endif %}">
+                                <a class="page-link" href="{{ path('trick', {slug: trick.slug, page: page - 1}) }}#comments" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            {% for i in 1..totalPages %}
+                                <li class="page-item {% if page == i %}active{% endif %}"><a class="page-link" href="{{ path('trick', {slug: trick.slug, page: i}) }}#comments">{{ i }}</a></li>
+                            {% endfor %}
+                            <li class="page-item {% if page == totalPages %}disabled{% endif     %}">
+                                <a class="page-link" href="{{ path('trick', {slug: trick.slug, page: page+1}) }}#comments" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                {% else %}
+                    <div class="text-left">
+                        <p>Soyez le premier à laisser votre avis :)</p>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </section>
