@@ -29,6 +29,7 @@ class AuthController extends AbstractController
 
     /**
      * @Route("/logout", name="logout")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function logout()
     {
@@ -36,6 +37,7 @@ class AuthController extends AbstractController
 
     /**
      * @Route("/inscription", name="register")
+     * @Security("is_granted('IS_ANONYMOUS')")
      */
     public function register(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface  $encoder)
     {
