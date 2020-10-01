@@ -8,6 +8,7 @@ use App\Form\RegistrationType;
 use App\Form\ResetPasswordType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -67,6 +68,7 @@ class AuthController extends AbstractController
 
     /**
      * @Route("/forgot-password", name="forgot_password")
+     * @Security("is_granted('IS_ANONYMOUS')")
      */
     public function forgotPassword(Request $request, \Swift_Mailer $mailer, UserRepository $repository, TokenGeneratorInterface $tokenGenerator, EntityManagerInterface $manager)
     {
@@ -94,6 +96,7 @@ class AuthController extends AbstractController
                         ]),
                         'text/html'
                     );
+
                 $mailer->send($message);
             }
 
@@ -109,10 +112,11 @@ class AuthController extends AbstractController
 
     /**
      * @Route("/reset-password", name="reset_password")
+     * @Security("is_granted('IS_ANONYMOUS')")
      */
     public function resetPassword(Request $request, UserRepository $repository, EntityManagerInterface $manager)
     {
-        $user = $repository->findOneBy(['email' => 'tg@tg.fr']);
+        $user = $repository->findOneBy(['email' => '']);
         $form = $this->createForm(ResetPasswordType::class, $user);
         $form->handleRequest($request);
 
