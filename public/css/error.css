@@ -1,0 +1,7 @@
+footer {
+  display: none !important;
+}
+
+a[type='button'] {
+  font-size: 2rem;
+}
