@@ -35,7 +35,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Ne peut pas être vide")
      * @Assert\Length(
      *     min=3,
      *     minMessage="Votre nom doit contenir au moins 3 caractères"
@@ -45,13 +45,14 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Ne peut pas être vide")
      * @Assert\Email(message="Vous devez renseigner un email valide!")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ne peut pas être vide")
      * @Assert\Length(
      *     min=5,
      *     minMessage="Le mot de passe doit contenir au moins 5 caractères"
