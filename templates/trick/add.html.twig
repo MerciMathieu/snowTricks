@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une figure - {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+{% endblock %}
+
+{% block body %}
+    <section id="trickAdd">
+        <div class="mb-5 container w-50">
+            <h1 class="my-5 text-center">Ajouter une figure</h1>
+            {% include( 'trick/_form.html.twig') %}
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/addMedia.js') }}"></script>
+{% endblock %}

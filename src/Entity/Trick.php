@@ -6,11 +6,14 @@ use App\Repository\TrickRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TrickRepository::class)
  * @ORM\Table(name="trick")
- * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity("title", message="Ce nom de figure existe déjà. ")
  */
 class Trick
 {
@@ -22,9 +25,9 @@ class Trick
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
-    private $name;
+    private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -47,7 +50,7 @@ class Trick
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
      */
     private $slug;
 
@@ -57,7 +60,8 @@ class Trick
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="trick", orphanRemoval=true, cascade={"persist"})
+     * @Assert\Valid
      * @var Media[]
      */
     private $medias;
@@ -84,14 +88,14 @@ class Trick
         return $this->id;
     }
 
-    public function getName(): string
+    public function getTitle(): string
     {
-        return $this->name;
+        return $this->title;
     }
 
-    public function setName(string $name): self
+    public function setTitle(string $title): self
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
     }
@@ -149,7 +153,7 @@ class Trick
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
 
@@ -168,10 +172,10 @@ class Trick
         return $this;
     }
 
-    public function getFirstImageUrl(): string
+    public function getFirstImageUrl(): ?string
     {
         $images = $this->getTypedMediasUrl(Media::TYPE_IMAGE);
-        return array_shift($images);
+        return reset($images);
     }
 
     public function getTypedMediasUrl(string $type): array
@@ -186,12 +190,43 @@ class Trick
         return $mediasUrl;
     }
 
+    public function computeSlug(SluggerInterface $slugger): void
+    {
+        $this->slug = (string) $slugger->slug((string) $this->title)->lower();
+    }
+
     /**
      * @return Collection|Media[]
      */
     public function getMedias(): Collection
     {
         return $this->medias;
+    }
+
+    public function getVideos(): Collection
+    {
+        $videos = new ArrayCollection();
+
+        foreach ($this->medias as $media) {
+            if ($media->getType() === Media::TYPE_VIDEO) {
+                $videos->add($media);
+            }
+        }
+
+        return $videos;
+    }
+
+    public function getImages(): Collection
+    {
+        $images = new ArrayCollection();
+
+        foreach ($this->medias as $media) {
+            if ($media->getType() === Media::TYPE_IMAGE) {
+                $images->add($media);
+            }
+        }
+
+        return $images;
     }
 
     public function addMedia(Media $media): self
@@ -208,13 +243,29 @@ class Trick
     {
         if ($this->medias->contains($media)) {
             $this->medias->removeElement($media);
-            // set the owning side to null (unless already changed)
-            if ($media->getTrick() === $this) {
-                $media->setTrick(null);
-            }
         }
 
         return $this;
+    }
+
+    public function addImage(Media $image): self
+    {
+        return $this->addMedia($image);
+    }
+
+    public function removeImage(Media $image): self
+    {
+        return $this->removeMedia($image);
+    }
+
+    public function addVideo(Media $video): self
+    {
+        return $this->addMedia($video);
+    }
+
+    public function removeVideo(Media $video): self
+    {
+        return $this->removeMedia($video);
     }
 
     public function getAuthor(): User
@@ -227,22 +278,6 @@ class Trick
         $this->author = $author;
 
         return $this;
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function onPrePersist(): void
-    {
-        $this->createdAt = new \DateTime("now");
-    }
-
-    /**
-     * @ORM\PreUpdate
-     */
-    public function onPreUpdate(): void
-    {
-        $this->updatedAt = new \DateTime("now");
     }
 
     /**

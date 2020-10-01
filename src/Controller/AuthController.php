@@ -39,13 +39,11 @@ class AuthController extends AbstractController
      */
     public function register(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface  $encoder)
     {
-
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
             $manager->persist($user);

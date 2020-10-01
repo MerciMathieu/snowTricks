@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MediaRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MediaRepository::class)
@@ -22,6 +23,7 @@ class Media
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\Url()
      */
     private $url;
 
@@ -29,11 +31,6 @@ class Media
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $type;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $caption;
 
     /**
      * @ORM\ManyToOne(targetEntity=Trick::class, inversedBy="medias")
@@ -58,19 +55,7 @@ class Media
         return $this;
     }
 
-    public function getCaption(): ?string
-    {
-        return $this->caption;
-    }
-
-    public function setCaption(?string $caption): self
-    {
-        $this->caption = $caption;
-
-        return $this;
-    }
-
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }

@@ -1,0 +1,28 @@
+section#forgotPassword,
+section#login,
+section#register,
+section#resetPassword {
+  height: calc(100vh - 300px);
+  position: relative;
+}
+
+section#forgotPassword .container,
+section#login .container,
+section#register .container,
+section#resetPassword .container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.list-group-item .img {
+  width: 200px;
+  padding: 20px;
+}
+
+@media screen and (max-width: 992px) {
+  div.w-50 {
+    width: 100% !important;
+  }
+}

@@ -1,0 +1,38 @@
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.shortDescription) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.category) }}
+    <h3>Medias</h3>
+    <ul class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+        <h3>Images</h3>
+        {% for image in form.images %}
+            <li class="list-group-item">
+                <img src="{{ image.vars.data.url }}" class="img img-fluid text-left" alt="image de la figure">
+                {{ form_row(image.url) }}
+            </li>
+        {% else %}
+            {{ form_widget(form.images) }}
+            <div class="form-error">
+                {{ form_errors(form.images) }}
+            </div>
+        {% endfor %}
+    </ul>
+    <ul class="videos" data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}">
+        <h3>Videos</h3>
+        {% for video in form.videos %}
+            <li class="list-group-item">
+                <embed type="video/webm" src="{{ video.vars.data.url }}" width="200" height="100">
+                {{ form_row(video.url) }}
+            </li>
+        {% else %}
+            {{ form_widget(form.videos) }}
+            <div class="form-error">
+                {{ form_errors(form.videos) }}
+            </div>
+        {% endfor %}
+    </ul>
+    {{ form_row(form.save) }}
+{{ form_end(form) }}
