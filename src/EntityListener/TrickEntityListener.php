@@ -17,7 +17,6 @@ class TrickEntityListener
 
     public function prePersist(Trick $trick, LifecycleEventArgs $event)
     {
-        $trick->setCreatedAt((new \DateTime("now")));
         $trick->computeSlug($this->slugger);
     }
 

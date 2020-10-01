@@ -81,6 +81,7 @@ class User implements UserInterface
 
     public function __construct()
     {
+        $this->createdAt = (new \DateTime("now"));
         $this->tricks = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
@@ -198,22 +199,6 @@ class User implements UserInterface
         }
 
         return $this;
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function onPrePersist(): void
-    {
-        $this->createdAt = new \DateTime("now");
-    }
-
-    /**
-     * @ORM\PreUpdate
-     */
-    public function onPreUpdate(): void
-    {
-        $this->updatedAt = new \DateTime("now");
     }
 
     public function getRoles()
