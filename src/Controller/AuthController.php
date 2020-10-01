@@ -102,7 +102,7 @@ class AuthController extends AbstractController
                 $mailer->send($message);
             }
 
-            $this->addFlash('success', 'Tu recevras un email si elle existe dans la base de données !');
+            $this->addFlash('success', 'Tu recevras un email si il existe dans la base de données !');
 
             return $this->redirectToRoute('login');
         }
