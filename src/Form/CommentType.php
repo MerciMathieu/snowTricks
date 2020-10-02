@@ -16,8 +16,7 @@ class CommentType extends AbstractType
         string $placeholder = '',
         string $class = '',
         $options = []
-    )
-    {
+    ) {
         return array_merge([
             'label' => $label,
             'attr' => [

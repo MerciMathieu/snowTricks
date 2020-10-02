@@ -93,7 +93,7 @@ class TrickController extends AbstractController
         $start = $page * $limit - $limit;
 
         $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment );
+        $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
