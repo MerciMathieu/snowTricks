@@ -222,11 +222,6 @@ class Trick
             }
         }
 
-        if ($media === null) {
-            $this->setDefaultImage();
-            $this->checkMedias($trick);
-        }
-
         return $media;
     }
 

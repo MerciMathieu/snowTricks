@@ -71,6 +71,9 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if (empty($trick->getTypedMediasUrl('image'))) {
+                $trick->setDefaultImage();
+            }
             $trick->checkMedias($trick);
             $manager->persist($trick);
             $manager->flush();
