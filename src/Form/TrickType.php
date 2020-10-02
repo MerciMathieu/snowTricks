@@ -21,8 +21,7 @@ class TrickType extends AbstractType
         int $rows = null,
         int $cols = null,
         $options = []
-    )
-    {
+    ) {
         return array_merge([
             'label' => $label,
             'attr' => [

@@ -28,6 +28,7 @@ class TrickController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $trick->checkMedias($trick);
             $trick->setAuthor($this->getUser());
+            $trick->setCreatedAt((new \DateTime("now")));
             $manager->persist($trick);
             $manager->flush();
 
@@ -92,7 +93,7 @@ class TrickController extends AbstractController
         $start = $page * $limit - $limit;
 
         $comment = new Comment();
-        $form = $this->createForm(CommentType::class, $comment );
+        $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
