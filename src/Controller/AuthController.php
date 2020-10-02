@@ -117,7 +117,7 @@ class AuthController extends AbstractController
      * @Route("/reset-password/{token}", name="reset_password")
      * @Security("is_granted('IS_ANONYMOUS')")
      */
-    public function resetPassword(Request $request, UserRepository $repository, EntityManagerInterface $manager, string $token, UserPasswordEncoderInterface  $encoder)
+    public function resetPassword(Request $request, UserRepository $repository, EntityManagerInterface $manager, string $token, UserPasswordEncoderInterface $encoder)
     {
         $user = $repository->findOneBy(['resetToken' => $token]);
         $form = $this->createForm(ResetPasswordType::class, $user);
