@@ -178,6 +178,13 @@ class Trick
         return reset($images);
     }
 
+    public function setDefaultImage() {
+        $media = new Media();
+        $defaultImage = $media->setUrl('/img/default.jpg');
+
+        return $this->addImage($defaultImage);
+    }
+
     public function getTypedMediasUrl(string $type): array
     {
         $mediasUrl = [];
@@ -213,6 +220,11 @@ class Trick
                 $media->setUrl($videoUrl);
                 $media->setType(Media::TYPE_VIDEO);
             }
+        }
+
+        if ($media === null) {
+            $this->setDefaultImage();
+            $this->checkMedias($trick);
         }
 
         return $media;
