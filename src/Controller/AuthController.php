@@ -94,7 +94,8 @@ class AuthController extends AbstractController
                         $this->renderView(
                             'auth/emails/resetPasswordEmail.html.twig', [
                             'user'=>$user,
-                            'url'=>$url
+                            'url'=>$url,
+                            'token' => $token
                         ]),
                         'text/html'
                     );
@@ -113,22 +114,25 @@ class AuthController extends AbstractController
     }
 
     /**
-     * @Route("/reset-password", name="reset_password")
+     * @Route("/reset-password/{token}", name="reset_password")
      * @Security("is_granted('IS_ANONYMOUS')")
      */
-    public function resetPassword(Request $request, UserRepository $repository, EntityManagerInterface $manager)
+    public function resetPassword(Request $request, UserRepository $repository, EntityManagerInterface $manager, string $token, UserPasswordEncoderInterface  $encoder)
     {
-        $user = $repository->findOneBy(['email' => '']);
+        $user = $repository->findOneBy(['resetToken' => $token]);
         $form = $this->createForm(ResetPasswordType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-//            $manager->persist($user);
-//            $manager->flush();
+            $data = $form->getData();
+            $hash = $encoder->encodePassword($user, $data->getPassword());
+            $user->setPassword($hash);
+            $user->setResetToken(null);
+            $manager->persist($user);
+            $manager->flush();
 
             $this->addFlash('success', "Le mot de passe a été modifié");
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('auth/reset-password.html.twig', [
