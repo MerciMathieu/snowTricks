@@ -28,6 +28,7 @@ class TrickController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $trick->checkMedias($trick);
             $trick->setAuthor($this->getUser());
+            $trick->setCreatedAt((new \DateTime("now")));
             $manager->persist($trick);
             $manager->flush();
 

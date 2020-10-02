@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200925161447 extends AbstractMigration
+final class Version20201002104331 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -20,6 +20,10 @@ final class Version20200925161447 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('CREATE SEQUENCE comment_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE media_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE trick_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE "user_id_seq" INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE TABLE comment (id INT NOT NULL, author_id INT NOT NULL, trick_id INT NOT NULL, content TEXT NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_9474526CF675F31B ON comment (author_id)');
         $this->addSql('CREATE INDEX IDX_9474526CB281BE2E ON comment (trick_id)');
@@ -44,6 +48,10 @@ final class Version20200925161447 extends AbstractMigration
         $this->addSql('ALTER TABLE media DROP CONSTRAINT FK_6A2CA10CB281BE2E');
         $this->addSql('ALTER TABLE comment DROP CONSTRAINT FK_9474526CF675F31B');
         $this->addSql('ALTER TABLE trick DROP CONSTRAINT FK_D8F0A91EF675F31B');
+        $this->addSql('DROP SEQUENCE comment_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE media_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE trick_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE "user_id_seq" CASCADE');
         $this->addSql('DROP TABLE comment');
         $this->addSql('DROP TABLE media');
         $this->addSql('DROP TABLE trick');

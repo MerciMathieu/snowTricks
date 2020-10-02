@@ -197,6 +197,7 @@ class AppFixtures extends Fixture
             $trick->setSlug($trickFromArray['slug']);
             $trick->setCategory($trickFromArray['category']);
             $trick->setAuthor($user);
+            $trick->setCreatedAt((new \DateTime("now")));
 
             $manager->persist($trick);
 
