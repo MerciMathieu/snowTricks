@@ -39,7 +39,6 @@ class AuthController extends AbstractController
      */
     public function logout()
     {
-
     }
 
     /**
@@ -92,11 +91,13 @@ class AuthController extends AbstractController
                     ->setTo($user->getEmail())
                     ->setBody(
                         $this->renderView(
-                            'auth/emails/resetPasswordEmail.html.twig', [
+                            'auth/emails/resetPasswordEmail.html.twig',
+                            [
                             'user'=>$user,
                             'url'=>$url,
                             'token' => $token
-                        ]),
+                        ]
+                        ),
                         'text/html'
                     );
 
@@ -122,7 +123,8 @@ class AuthController extends AbstractController
         $user = $repository->findOneBy(['resetToken' => $token]);
         $form = $this->createForm(ResetPasswordType::class, $user);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+
+        if ($user && $form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $hash = $encoder->encodePassword($user, $data->getPassword());
             $user->setPassword($hash);
