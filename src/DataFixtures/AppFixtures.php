@@ -50,7 +50,6 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "slug" => "nose-grab",
                 "category" => "Grab"
             ),
             "2" => array(
@@ -64,7 +63,6 @@ class AppFixtures extends Fixture
                         "type" => "image",
                     )
                 ),
-                "slug" => "stalefish",
                 "category" => "Grab"
             ),
             "3" => array(
@@ -77,7 +75,6 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "slug" => "360",
                 "category" => "Rotation"
             ),
             "4" => array(
@@ -90,7 +87,6 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "slug" => "back-flip",
                 "category" => "Rotation"
             ),
             "5" => array(
@@ -103,7 +99,6 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "slug" => "front-flip",
                 "category" => "Rotation"
             ),
             "6" => array(
@@ -116,7 +111,6 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "slug" => "truck-driver",
                 "category" => "Grab"
             ),
             "7" => array(
@@ -129,7 +123,6 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "slug" => "japan-air",
                 "category" => "Grab"
             ),
             "8" => array(
@@ -142,7 +135,6 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "slug" => "tail-grab",
                 "category" => "Grab"
             ),
             "9" => array(
@@ -155,7 +147,6 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "slug" => "indy",
                 "category" => "Grab"
             ),
             "10" => array(
@@ -168,7 +159,6 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "slug" => "mute",
                 "category" => "Grab"
             )
         );
@@ -194,10 +184,8 @@ class AppFixtures extends Fixture
             $trick->setTitle($trickFromArray['title']);
             $trick->setShortDescription($trickFromArray['shortDescription']);
             $trick->setDescription($trickFromArray['description']);
-            $trick->setSlug($trickFromArray['slug']);
             $trick->setCategory($trickFromArray['category']);
             $trick->setAuthor($user);
-            $trick->setCreatedAt((new \DateTime("now")));
 
             $manager->persist($trick);
 

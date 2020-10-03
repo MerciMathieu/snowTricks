@@ -26,9 +26,8 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $trick->checkMedias($trick);
+            $trick->handleMedias();
             $trick->setAuthor($this->getUser());
-            $trick->setCreatedAt((new \DateTime("now")));
             $manager->persist($trick);
             $manager->flush();
 
@@ -67,8 +66,11 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $trick->checkMedias($trick);
-            $manager->persist($trick);
+            if (empty($trick->getTypedMediasUrl('image'))) {
+                $trick->addDefaultImage();
+            }
+            $trick->handleMedias($trick);
+
             $manager->flush();
 
             $this->addFlash('success', "La figure a bien été modifiée.");

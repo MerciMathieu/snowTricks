@@ -41,6 +41,11 @@ class Comment
      */
     private $trick;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime("now");
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,13 +97,5 @@ class Comment
         $this->trick = $trick;
 
         return $this;
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function onPrePersist(): void
-    {
-        $this->createdAt = new \DateTime("now");
     }
 }
