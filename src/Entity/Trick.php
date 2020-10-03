@@ -196,7 +196,8 @@ class Trick
         return reset($images);
     }
 
-    public function addDefaultImage() {
+    public function addDefaultImage()
+    {
         $media = new Media();
         $defaultImage = $media->setUrl(self::DEFAULT_IMAGE);
 
