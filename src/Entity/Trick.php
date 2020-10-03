@@ -17,6 +17,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Trick
 {
+    const DEFAULT_IMAGE = 'https://cdn3.tissus-price.com/53726-large_default/tulle-gris.jpg';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -25,17 +27,32 @@ class Trick
     private $id;
 
     /**
+     * @Assert\NotBlank(message="Ne peut pas être vide")
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Length(
+     *     min=3,
+     *     minMessage="Le titre doit contenir au moins 3 caractères"
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ne peut pas être vide")
+     * @Assert\Length(
+     *     min=5,
+     *     minMessage="La description courte doit contenir au moins 5 caractères"
+     * )
      */
     private $shortDescription;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Ne peut pas être vide")
+     * @Assert\Length(
+     *     min=5,
+     *     minMessage="La description doit contenir au moins 5 caractères"
+     * )
      */
     private $description;
 
@@ -79,6 +96,7 @@ class Trick
 
     public function __construct()
     {
+        $this->createdAt = new \DateTime("now");
         $this->medias = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
@@ -178,6 +196,13 @@ class Trick
         return reset($images);
     }
 
+    public function addDefaultImage() {
+        $media = new Media();
+        $defaultImage = $media->setUrl(self::DEFAULT_IMAGE);
+
+        return $this->addImage($defaultImage);
+    }
+
     public function getTypedMediasUrl(string $type): array
     {
         $mediasUrl = [];
@@ -195,11 +220,13 @@ class Trick
         $this->slug = (string) $slugger->slug((string) $this->title)->lower();
     }
 
-    public function checkMedias(Trick $trick): ?Media
+    public function handleMedias(): void
     {
-        $media = null;
+        if (empty($this->getTypedMediasUrl('image'))) {
+            $this->addDefaultImage();
+        }
 
-        foreach ($trick->getMedias() as $media) {
+        foreach ($this->getMedias() as $media) {
             if (stristr($media->getUrl(), '.jpg') || stristr($media->getUrl(), '.png')) {
                 $media->setType(Media::TYPE_IMAGE);
             } else {
@@ -214,8 +241,6 @@ class Trick
                 $media->setType(Media::TYPE_VIDEO);
             }
         }
-
-        return $media;
     }
 
     /**

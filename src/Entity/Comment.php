@@ -20,6 +20,7 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Ne peut pas être vide")
      */
     private $content;
 
@@ -39,6 +40,11 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $trick;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime("now");
+    }
 
     public function getId(): ?int
     {
@@ -91,13 +97,5 @@ class Comment
         $this->trick = $trick;
 
         return $this;
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function onPrePersist(): void
-    {
-        $this->createdAt = new \DateTime("now");
     }
 }
