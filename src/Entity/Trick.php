@@ -27,17 +27,32 @@ class Trick
     private $id;
 
     /**
+     * @Assert\NotBlank(message="Ne peut pas être vide")
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Length(
+     *     min=3,
+     *     minMessage="Le titre doit contenir au moins 3 caractères"
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ne peut pas être vide")
+     * @Assert\Length(
+     *     min=5,
+     *     minMessage="La description courte doit contenir au moins 5 caractères"
+     * )
      */
     private $shortDescription;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Ne peut pas être vide")
+     * @Assert\Length(
+     *     min=5,
+     *     minMessage="La description doit contenir au moins 5 caractères"
+     * )
      */
     private $description;
 

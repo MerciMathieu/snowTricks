@@ -23,7 +23,9 @@ class Media
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\Url()
+     * @Assert\Url(
+     *     protocols = {"http", "https"}
+     * )
      */
     private $url;
 

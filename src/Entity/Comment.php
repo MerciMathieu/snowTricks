@@ -20,6 +20,7 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Ne peut pas être vide")
      */
     private $content;
 
