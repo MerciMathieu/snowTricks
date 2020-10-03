@@ -71,6 +71,11 @@ class User implements UserInterface
     private $tricks;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $resetToken;
+
+    /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="author", orphanRemoval=true)
      */
     private $comments;
@@ -213,5 +218,17 @@ class User implements UserInterface
     public function getUsername(): ?string
     {
         return $this->email;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
     }
 }
