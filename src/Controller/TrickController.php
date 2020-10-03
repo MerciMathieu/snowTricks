@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
-use App\Entity\Media;
 use App\Entity\Trick;
 use App\Form\CommentType;
 use App\Form\TrickType;
@@ -27,12 +26,8 @@ class TrickController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if (empty($trick->getTypedMediasUrl('image'))) {
-                $trick->setDefaultImage();
-            }
-            $trick->checkMedias($trick);
+            $trick->handleMedias();
             $trick->setAuthor($this->getUser());
-            $trick->setCreatedAt((new \DateTime("now")));
             $manager->persist($trick);
             $manager->flush();
 
@@ -72,10 +67,10 @@ class TrickController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if (empty($trick->getTypedMediasUrl('image'))) {
-                $trick->setDefaultImage();
+                $trick->addDefaultImage();
             }
-            $trick->checkMedias($trick);
-            $manager->persist($trick);
+            $trick->handleMedias($trick);
+
             $manager->flush();
 
             $this->addFlash('success', "La figure a bien été modifiée.");

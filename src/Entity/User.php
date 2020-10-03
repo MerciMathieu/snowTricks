@@ -81,7 +81,7 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->createdAt = (new \DateTime("now"));
+        $this->createdAt = new \DateTime("now");
         $this->tricks = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }

@@ -21,6 +21,7 @@ class AuthController extends AbstractController
 {
     /**
      * @Route("/login", name="login")
+     * @Security("is_granted('IS_ANONYMOUS')")
      */
     public function login(AuthenticationUtils $utils)
     {
@@ -76,8 +77,8 @@ class AuthController extends AbstractController
         $form = $this->createForm(ForgotPasswordType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            $user = $repository->findOneBy(['email' => $form->getData()->getEmail()]);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $repository->findOneBy(['email' => $form->getData()['email']]);
 
             if ($user) {
                 $token = $tokenGenerator->generateToken();
@@ -129,7 +130,7 @@ class AuthController extends AbstractController
             $hash = $encoder->encodePassword($user, $data->getPassword());
             $user->setPassword($hash);
             $user->setResetToken(null);
-            $manager->persist($user);
+
             $manager->flush();
 
             $this->addFlash('success', "Le mot de passe a été modifié");
