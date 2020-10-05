@@ -1,23 +1,23 @@
 # snowTricks
 Communautary website to share each other snowboard tricks. Enjoy !
 
-# Requirements
+## Requirements
 * composer
 * php 7.2 or higher
 * postgres sql
 * symfony (tool to use with symfony5; replace "php bin/console" instruction
 
-# Installation
+## Installation
     mkdir snowtricks
     cd snowtricks
-## Git clone
+### Git clone
     git clone https://github.com/MerciMathieu/snowTricks.git ./
 
-## Composer install
+### Composer install
     composer install
 
-## Database
-### Enter your connection's informations
+### Database
+#### Enter your connection's informations
 * Enter your informations in the **/.env**  file  
 Following lines will have to be replaced with your own informations:  
     
@@ -27,20 +27,20 @@ AND
 
     MAILER_URL=
 
-### Create the database
+#### Create the database
     symfony console doctrine:database:create
 
 
-### Inject tables with migration
+#### Inject tables with migration
     symfony console doctrine:migrations:migrate
 will create the tables and fields
 
-# Usage
+## Usage
 
-## Load data tricks 
+### Load data tricks 
     symfony console doctrine:fixtures:load  
 
-## Start using the website
+### Start using the website
 start symfony web server  
     
     symfony serve -d
@@ -58,7 +58,7 @@ and stop it, when you stop to work on it, with
     docker-compose stop
 
 
-### Create an account
+#### Create an account
 
 and start adding **your own tricks !**
 
