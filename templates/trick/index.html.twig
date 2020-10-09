@@ -108,7 +108,7 @@
             </div>
             <div id="comments" class="my-5 pb-5">
                 <p>
-                    {{ comments|length }} commentaire{% if comments|length == 0 or comments|length > 1 %}s{% endif %}
+                    {{ nbComments }} commentaire{% if nbComments > 1 %}s{% endif %}
                 </p>
                 {% if comments|length > 0 %}
                     {% for comment in comments %}

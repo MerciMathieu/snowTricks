@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Comment;
 use App\Entity\Media;
 use App\Entity\Trick;
 use App\Entity\User;
@@ -50,7 +51,27 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "category" => "Grab"
+                "category" => "Grab",
+                "comments" => array(
+                    "1" => array(
+                        "content" => "I can drive 10 miles, walk 50 feet. Turn around and before I know it, I'd be back home. Or would I? I'm not sure but that's just how it is."
+                    ),
+                    "2" => array(
+                        "content" => "If I could I would. Wether or not I should, I still would."
+                    ),
+                    "3" => array(
+                        "content" => "Look! In the sky. It's a bird, it's a plane. Or is it a hellicopter? No actually I think it is a bird. Or maybe I'm just seeing things. Who knows... After 10 shots of Whiskey things start to get a bit strange."
+                    ),
+                    "4" => array(
+                        "content" => "You can find me in the club, bottle full of bub Look mami I got the X if you into taking drugs I'm into having sex, I ain't into makin love So come give me a hug if you into getting rubbed."
+                    ),
+                    "5" => array(
+                        "content" => "I never meant to cause you any sorrow. I never meant to cause you any pain. I only wanted to one time see you laughing. I only wanted to see you laughing in the purple rain."
+                    ),
+                    "6" => array(
+                        "content" => "yes sure !"
+                    ),
+                )
             ),
             "2" => array(
                 "title" => "Stalefish",
@@ -63,7 +84,21 @@ class AppFixtures extends Fixture
                         "type" => "image",
                     )
                 ),
-                "category" => "Grab"
+                "category" => "Grab",
+                "comments" => array(
+                    "1" => array(
+                        "content" => "I can drive 10 miles, walk 50 feet. Turn around and before I know it, I'd be back home. Or would I? I'm not sure but that's just how it is."
+                    ),
+                    "2" => array(
+                        "content" => "If I could I would. Wether or not I should, I still would."
+                    ),
+                    "3" => array(
+                        "content" => "Look! In the sky. It's a bird, it's a plane. Or is it a hellicopter? No actually I think it is a bird. Or maybe I'm just seeing things. Who knows... After 10 shots of Whiskey things start to get a bit strange."
+                    ),
+                    "4" => array(
+                        "content" => "You can find me in the club, bottle full of bub Look mami I got the X if you into taking drugs I'm into having sex, I ain't into makin love So come give me a hug if you into getting rubbed."
+                    )
+                )
             ),
             "3" => array(
                 "title" => "360",
@@ -75,7 +110,33 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "category" => "Rotation"
+                "category" => "Rotation",
+                "comments" => array(
+                    "1" => array(
+                        "content" => "I can drive 10 miles, walk 50 feet. Turn around and before I know it, I'd be back home. Or would I? I'm not sure but that's just how it is."
+                    ),
+                    "2" => array(
+                        "content" => "If I could I would. Wether or not I should, I still would."
+                    ),
+                    "3" => array(
+                        "content" => "Look! In the sky. It's a bird, it's a plane. Or is it a hellicopter? No actually I think it is a bird. Or maybe I'm just seeing things. Who knows... After 10 shots of Whiskey things start to get a bit strange."
+                    ),
+                    "4" => array(
+                        "content" => "You can find me in the club, bottle full of bub Look mami I got the X if you into taking drugs I'm into having sex, I ain't into makin love So come give me a hug if you into getting rubbed."
+                    ),
+                    "5" => array(
+                        "content" => "I never meant to cause you any sorrow. I never meant to cause you any pain. I only wanted to one time see you laughing. I only wanted to see you laughing in the purple rain."
+                    ),
+                    "6" => array(
+                        "content" => "yes sure !"
+                    ),
+                    "7" => array(
+                        "content" => "You can find me in the club, bottle full of bub Look mami I got the X if you into taking drugs I'm into having sex, I ain't into makin love So come give me a hug if you into getting rubbed."
+                    ),
+                    "8" => array(
+                        "content" => "I never meant to cause you any sorrow. I never meant to cause you any pain. I only wanted to one time see you laughing. I only wanted to see you laughing in the purple rain."
+                    ),
+                )
             ),
             "4" => array(
                 "title" => "Back flip",
@@ -87,7 +148,8 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "category" => "Rotation"
+                "category" => "Rotation",
+                "comments" => array()
             ),
             "5" => array(
                 "title" => "Front flip",
@@ -99,7 +161,8 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "category" => "Rotation"
+                "category" => "Rotation",
+                "comments" => array()
             ),
             "6" => array(
                 "title" => "truck driver",
@@ -111,7 +174,8 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "category" => "Grab"
+                "category" => "Grab",
+                "comments" => array()
             ),
             "7" => array(
                 "title" => "japan air",
@@ -123,7 +187,8 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "category" => "Grab"
+                "category" => "Grab",
+                "comments" => array()
             ),
             "8" => array(
                 "title" => "Tail grab",
@@ -135,7 +200,8 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "category" => "Grab"
+                "category" => "Grab",
+                "comments" => array()
             ),
             "9" => array(
                 "title" => "indy",
@@ -147,7 +213,8 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "category" => "Grab"
+                "category" => "Grab",
+                "comments" => array()
             ),
             "10" => array(
                 "title" => "Mute",
@@ -159,7 +226,8 @@ class AppFixtures extends Fixture
                         "type" => "image"
                     )
                 ),
-                "category" => "Grab"
+                "category" => "Grab",
+                "comments" => array()
             )
         );
         $usersArray = array(
@@ -198,7 +266,17 @@ class AppFixtures extends Fixture
                 $manager->persist($media);
             }
 
+            foreach ($trickFromArray['comments'] as $commentFromArray) {
+                $comment = new Comment();
+                $comment->setTrick($trick);
+                $comment->setAuthor($user);
+                $comment->setContent($commentFromArray['content']);
+
+                $manager->persist($comment);
+            }
+
             $trick->addMedia($media);
+            $trick->addComment($comment);
         }
         $manager->flush();
     }
