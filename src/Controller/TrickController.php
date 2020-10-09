@@ -18,6 +18,8 @@ class TrickController extends AbstractController
      */
     public function index(Trick $trick, Request $request, EntityManagerInterface $manager, CommentRepository $commentRepository, int $page)
     {
+        $allCommentsFromTrick = $trick->getComments()->count();
+
         $limit = CommentRepository::LIMIT;
         $totalPages = ceil($trick->getComments()->count() / $limit);
         $start = $page * $limit - $limit;
@@ -43,7 +45,8 @@ class TrickController extends AbstractController
             'comment_form' => $form->createView(),
             'comments' => $commentRepository->findBy(['trick' => $trick], ['createdAt' => 'DESC'], $limit, $start),
             'totalPages' => $totalPages,
-            'page' => $page
+            'page' => $page,
+            'nbComments' => $allCommentsFromTrick
         ]);
     }
 }
