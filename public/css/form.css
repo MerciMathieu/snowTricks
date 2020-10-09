@@ -22,7 +22,7 @@ section#resetPassword .container {
 }
 
 @media screen and (max-width: 992px) {
-  div.w-50 {
+  .container.width-sm-100 {
     width: 100% !important;
   }
 }
