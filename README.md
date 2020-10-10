@@ -2,10 +2,10 @@
 Communautary website to share each other snowboard tricks. Enjoy !
 
 ## Requirements
-* composer
-* php 7.2 or higher
-* postgres sql
-* symfony (tool to use with symfony5; replace "php bin/console" instruction
+*   composer
+*   php 7.2 or higher
+*   postgres sql
+*   symfony (tool to use with symfony5; replace "php bin/console" instruction
 
 ## Installation
     mkdir snowtricks
@@ -18,7 +18,7 @@ Communautary website to share each other snowboard tricks. Enjoy !
 
 ### Database
 #### Enter your connection's informations
-* Enter your informations in the **/.env**  file  
+*   Enter your informations in the **/.env**  file  
 Following lines will have to be replaced with your own informations:  
     
 
@@ -29,7 +29,6 @@ AND
 
 #### Create the database
     symfony console doctrine:database:create
-
 
 #### Inject tables with migration
     symfony console doctrine:migrations:migrate
@@ -56,7 +55,6 @@ then, start db with
 and stop it, when you stop to work on it, with
 
     docker-compose stop
-
 
 #### Create an account
 

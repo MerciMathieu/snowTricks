@@ -1,37 +1,37 @@
 section#home {
-    background-image: url("/img/heroblock.jpg");
-    background-position: center right;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: calc(100vh - 116.25px);
+  background-image: url("/img/heroblock.jpg");
+  background-position: center right;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: calc(100vh - 116.25px);
 }
 
 section#tricks {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 
 section#home .icon i {
-    color: var(--black);
+  color: var(--black);
 }
 
 section#home .icon#goToTricks {
-    position: absolute;
-    bottom: 1rem;
-    right: 5rem;
+  position: absolute;
+  bottom: 1rem;
+  right: 5rem;
 }
 
 @media screen and (max-width: 992px) {
-    section#home {
-        background-image: url("/img/heroblock_mobile.jpg");
-        background-position: right;
-        background-attachment: initial;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
+  section#home {
+    background-image: url("/img/heroblock_mobile.jpg");
+    background-position: right;
+    background-attachment: initial;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 
-    section#home .icon#goToTricks {
-        bottom: 11rem;
-        right: 3rem;
-    }
+  section#home .icon#goToTricks {
+    bottom: 11rem;
+    right: 3rem;
+  }
 }

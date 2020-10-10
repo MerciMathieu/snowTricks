@@ -22,11 +22,14 @@ section#trick .comment img {
   border-radius: 50%;
 }
 
-@media screen and (max-width: 992px){
-  section#trick img, p.description,
-  #carouselImages, #carouselVideos {
-    width: 100% ;
+@media screen and (max-width: 992px) {
+  section#trick img,
+  p.description,
+  #carouselImages,
+  #carouselVideos {
+    width: 100%;
   }
+
   .collapse:not(.show) {
     display: none !important;
   }

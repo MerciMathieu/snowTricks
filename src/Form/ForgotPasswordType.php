@@ -11,17 +11,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ForgotPasswordType extends AbstractType
 {
-    private function getConfigurations($label, $placeholder = '', $class = '', $options = [])
-    {
-        return array_merge([
-            'label' => $label,
-            'attr' => [
-                'placeholder' => $placeholder,
-                'class' => $class
-            ]
-        ], $options);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -31,7 +20,12 @@ class ForgotPasswordType extends AbstractType
                     new Email(),
                 ],
             ])
-            ->add('save', SubmitType::class, $this->getConfigurations("Réinitialiser son mot de passe", "", "btn btn-dark"))
+            ->add('save', SubmitType::class, [
+                "label" => "Réinitialiser son mot de passe",
+                'attr' => [
+                    "class" => "btn btn-dark"
+                ]
+            ])
         ;
     }
 }
