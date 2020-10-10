@@ -14,22 +14,21 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RegistrationType extends AbstractType
 {
-    private function getConfigurations($label, $placeholder = '', $class = '', $options = [])
-    {
-        return array_merge([
-            'label' => $label,
-            'attr' => [
-                'placeholder' => $placeholder,
-                'class' => $class
-            ]
-        ], $options);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('userName', TextType::class, $this->getConfigurations("Nom d'utilisateur", "Quel est votre pseudo?"))
-            ->add('email', EmailType::class, $this->getConfigurations("Email", "Votre adresse email..."))
+            ->add('userName', TextType::class, [
+                'label' => "Nom d'utilisateur",
+                'attr' => [
+                    'placeholder' => "Quel est votre pseudo?"
+                ]
+            ])
+            ->add('email', EmailType::class, [
+                'label' => "Email",
+                'attr' => [
+                    'placeholder' => "otre adresse email..."
+                ]
+            ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe doivent être les mêmes.',
@@ -37,7 +36,12 @@ class RegistrationType extends AbstractType
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Confirmer le mot de passe'],
             ])
-            ->add('save', SubmitType::class, $this->getConfigurations("Confirmer l'inscription", "", "btn btn-dark"))
+            ->add('save', SubmitType::class, [
+                "label" => "Confirmer l'inscription",
+                'attr' => [
+                    "class" => "btn btn-dark"
+                ]
+            ])
         ;
     }
 

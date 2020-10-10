@@ -11,21 +11,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CommentType extends AbstractType
 {
-    private function getConfigurations(
-        string $label,
-        string $placeholder = '',
-        string $class = '',
-        $options = []
-    ) {
-        return array_merge([
-            'label' => $label,
-            'attr' => [
-                'placeholder' => $placeholder,
-                'class' => $class,
-            ]
-        ], $options);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -35,7 +20,13 @@ class CommentType extends AbstractType
                     'placeholder' => 'Entrez votre commentaire'
                 ]
             ])
-            ->add('save', SubmitType::class, $this->getConfigurations("Valider", "", "btn btn-dark"));
+            ->add('save', SubmitType::class, [
+                "label" => "Valider",
+                'attr' => [
+                    "class" => "btn btn-dark"
+                ]
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

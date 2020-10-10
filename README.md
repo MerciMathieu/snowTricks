@@ -1,3 +1,5 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/7b6de2c7dfc83599fa2c/maintainability)](https://codeclimate.com/github/MerciMathieu/snowTricks/maintainability)
+
 # snowTricks
 Communautary website to share each other snowboard tricks. Enjoy !
 

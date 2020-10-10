@@ -14,40 +14,31 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TrickType extends AbstractType
 {
-    private function getConfigurations(
-        string $label,
-        string $placeholder = '',
-        string $class = '',
-        int $rows = null,
-        int $cols = null,
-        $options = []
-    ) {
-        return array_merge([
-            'label' => $label,
-            'attr' => [
-                'placeholder' => $placeholder,
-                'class' => $class,
-                'rows' => $rows,
-                'cols' => $cols
-            ]
-        ], $options);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, $this->getConfigurations("Titre", "Le nom de la figure"))
-            ->add('shortDescription', TextType::class, $this->getConfigurations("Description courte", "En quelques mots..."))
+            ->add('title', TextType::class, [
+                'label' => "Titre",
+                'attr' => [
+                    'placeholder' => "Le nom de la figure"
+                ]
+            ])
+            ->add('shortDescription', TextType::class, [
+                'label' => "Description courte",
+                'attr' => [
+                    'placeholder' => "En quelques mots..."
+                ]
+            ])
             ->add(
                 'description',
                 TextareaType::class,
-                $this->getConfigurations(
-                    "Description",
-                    "Une description complète",
-                    '',
-                    10,
-                    null
-                )
+                [
+                    'label' => "Description",
+                    'attr' => [
+                        'placeholder' => "Une description complète",
+                        'rows' => 10
+                    ]
+                ]
             )
             ->add('category', ChoiceType::class, [
                 'choices' => [
@@ -72,7 +63,13 @@ class TrickType extends AbstractType
                 'by_reference' => false,
                 'allow_delete' => true,
             ])
-            ->add('save', SubmitType::class, $this->getConfigurations("Valider", "", "btn btn-dark"));
+            ->add('save', SubmitType::class, [
+                "label" => "Valider",
+                'attr' => [
+                    "class" => "btn btn-dark"
+                ]
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
