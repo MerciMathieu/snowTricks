@@ -230,17 +230,18 @@ class Trick
         foreach ($this->getMedias() as $media) {
             if (stristr($media->getUrl(), '.jpg') || stristr($media->getUrl(), '.png')) {
                 $media->setType(Media::TYPE_IMAGE);
-            } else {
-                $videoUrl = $media->getUrl();
-                if (stripos($videoUrl, 'watch?v=')) {
-                    $videoUrl = str_replace('watch?v=', 'embed/', $videoUrl);
-                }
-                if (stripos($videoUrl, '&')) {
-                    $videoUrl = strstr($videoUrl, '&', true);
-                }
-                $media->setUrl($videoUrl);
-                $media->setType(Media::TYPE_VIDEO);
+                continue;
             }
+
+            $videoUrl = $media->getUrl();
+            if (stripos($videoUrl, 'watch?v=')) {
+                $videoUrl = str_replace('watch?v=', 'embed/', $videoUrl);
+            }
+            if (stripos($videoUrl, '&')) {
+                $videoUrl = strstr($videoUrl, '&', true);
+            }
+            $media->setUrl($videoUrl);
+            $media->setType(Media::TYPE_VIDEO);
         }
     }
 

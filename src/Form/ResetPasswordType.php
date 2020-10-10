@@ -12,17 +12,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ResetPasswordType extends AbstractType
 {
-    private function getConfigurations($label, $placeholder = '', $class = '', $options = [])
-    {
-        return array_merge([
-            'label' => $label,
-            'attr' => [
-                'placeholder' => $placeholder,
-                'class' => $class
-            ]
-        ], $options);
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -33,7 +22,12 @@ class ResetPasswordType extends AbstractType
                 'first_options'  => ['label' => 'Entrez un nouveau mot de passe'],
                 'second_options' => ['label' => 'Confirmer le mot de passe'],
             ])
-            ->add('save', SubmitType::class, $this->getConfigurations("Confirmer", "", "btn btn-dark"))
+            ->add('save', SubmitType::class, [
+                "label" => "Confirmer",
+                'attr' => [
+                    "class" => "btn btn-dark"
+                ]
+            ])
         ;
     }
 
