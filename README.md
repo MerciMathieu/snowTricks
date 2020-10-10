@@ -7,7 +7,7 @@ Communautary website to share each other snowboard tricks. Enjoy !
 * postgres sql
 * symfony (tool to use with symfony5; replace "php bin/console" instruction
 
-## Installation
+## Install
     mkdir snowtricks
     cd snowtricks
 ### Git clone
