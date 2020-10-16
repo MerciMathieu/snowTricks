@@ -7,6 +7,16 @@ var $addImageButton = $("<button type='button' class='add_image_url btn btn-outl
 var $newLinkLiVideo = $("<li class='list-unstyled text-right'></li>").append($addVideoButton);
 var $newLinkLiImage = $("<li class='list-unstyled text-right'></li>").append($addImageButton);
 
+function addMediaFormDeleteBtn($tagFormLi) {
+    var $removeFormButton = $("<button type='button' class='btn btn-outline-danger'>-</button>");
+    $tagFormLi.append($removeFormButton);
+
+    $removeFormButton.on("click", function(e) {
+        // remove the li for the tag form
+        $tagFormLi.remove();
+    });
+}
+
 function addMediaForm($collectionHolder, $newLinkLi) {
     // Get the data-prototype explained earlier
     var prototype = $collectionHolder.data("prototype");
@@ -32,16 +42,6 @@ function addMediaForm($collectionHolder, $newLinkLi) {
     $newLinkLi.before($newFormLi);
 
     addMediaFormDeleteBtn($newFormLi);
-}
-
-function addMediaFormDeleteBtn($tagFormLi) {
-    var $removeFormButton = $("<button type='button' class='btn btn-outline-danger'>-</button>");
-    $tagFormLi.append($removeFormButton);
-
-    $removeFormButton.on("click", function(e) {
-        // remove the li for the tag form
-        $tagFormLi.remove();
-    });
 }
 
 jQuery(document).ready(function() {
