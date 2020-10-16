@@ -26,8 +26,6 @@ Following lines will have to be replaced with your own informations:
     
 
     DATABASE_URL=
-AND
-
     MAILER_URL=
 
 #### Create the database
