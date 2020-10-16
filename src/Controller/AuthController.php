@@ -43,7 +43,7 @@ class AuthController extends AbstractController
     }
 
     /**
-     * @Route("/inscription", name="register")
+     * @Route("/register", name="register")
      * @Security("is_granted('IS_ANONYMOUS')")
      */
     public function register(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface  $encoder)

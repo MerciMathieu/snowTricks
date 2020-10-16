@@ -20,6 +20,7 @@ class RegistrationType extends AbstractType
             ->add('userName', TextType::class, [
                 'label' => "Nom d'utilisateur",
                 'attr' => [
+                    'name' => 'userName',
                     'placeholder' => "Quel est votre pseudo?"
                 ]
             ])
@@ -39,6 +40,7 @@ class RegistrationType extends AbstractType
             ->add('save', SubmitType::class, [
                 "label" => "Confirmer l'inscription",
                 'attr' => [
+                    "name" => "submit",
                     "class" => "btn btn-dark"
                 ]
             ])
