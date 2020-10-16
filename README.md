@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6592912eec394be8b2ff5c7626cec46a)](https://app.codacy.com/gh/MerciMathieu/snowTricks?utm_source=github.com&utm_medium=referral&utm_content=MerciMathieu/snowTricks&utm_campaign=Badge_Grade)
 [![Maintainability](https://api.codeclimate.com/v1/badges/7b6de2c7dfc83599fa2c/maintainability)](https://codeclimate.com/github/MerciMathieu/snowTricks/maintainability)
 
 # snowTricks
