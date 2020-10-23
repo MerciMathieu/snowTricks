@@ -8,7 +8,7 @@ Communautary website to share each other snowboard tricks
 *   composer
 *   php 7.2 or higher
 *   postgres sql
-*   symfony (tool to use with symfony5; replace "php bin/console" instruction
+*   symfony (tool to use with symfony5; replaces "php bin/console" command
 
 ## Install
     mkdir snowtricks
