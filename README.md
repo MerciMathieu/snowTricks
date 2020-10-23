@@ -37,7 +37,7 @@ will create the tables and fields
 
 ## Usage
 
-### Load data tricks 
+### Load initial tricks (fixtures) 
     symfony console doctrine:fixtures:load  
 
 ### Start using the website
