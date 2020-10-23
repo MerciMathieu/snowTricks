@@ -24,8 +24,8 @@ Communautary website to share each other snowboard tricks
 *   Enter your informations in the **/.env**  file  
 Following lines will have to be replaced with your own informations:  
     
-
     DATABASE_URL=
+
     MAILER_URL=
 
 #### Create the database
