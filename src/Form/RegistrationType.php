@@ -26,7 +26,7 @@ class RegistrationType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => "Email",
                 'attr' => [
-                    'placeholder' => "otre adresse email..."
+                    'placeholder' => "Votre adresse email..."
                 ]
             ])
             ->add('password', RepeatedType::class, [
