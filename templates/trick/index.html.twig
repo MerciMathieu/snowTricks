@@ -18,8 +18,8 @@
             <h1 class="m-5">{{ trick.title }}</h1>
             <img src="{{ trick.firstImageUrl }}" class="img img-fluid text-left" alt="image de la figure {{ trick.title }}">
             <div class="content mb-5 p-3">
-                <small>Ajouté le {{ trick.createdAt|date('m/d/Y à H:i') }} par {{ trick.author.userNickName }} | Catégorie: {{ trick.category }} | <a href="#comments" title="Vers les commentaires">
-                        {{ comments|length }} commentaire{% if comments|length == 0 or comments|length > 1 %}s{% endif %}
+                <small>Ajouté le {{ trick.createdAt|date('d/m/Y à H:i') }} par {{ trick.author.userNickName }} | Catégorie: {{ trick.category }} | <a href="#comments" title="Vers les commentaires">
+                        {{ nbComments }} commentaire{% if comments|length == 0 or comments|length > 1 %}s{% endif %}
                     </a>
                 </small>
                 {% if app.user %}
@@ -113,7 +113,7 @@
                 {% if comments|length > 0 %}
                     {% for comment in comments %}
                         <div class="comment mb-5 p-5">
-                            <div class="card-header mb-3">{{ comment.author.userNickName }}<small class="text-muted ml-2"> le {{ comment.createdAt|date('d/m/Y à H:i:s')}}</small></div>
+                            <div class="card-header mb-3">{{ comment.author.userNickName }}<small class="text-muted ml-2"> le {{ comment.createdAt|date('d/m/Y à H:i')}}</small></div>
                             <img src="https://picsum.photos/id/1/100/100" alt="avatar de Mathieu" class="float-right">
                             <p class="m-5 d-inline">
                                 {{ comment.content }}
